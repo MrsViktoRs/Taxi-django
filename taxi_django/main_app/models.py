@@ -98,8 +98,8 @@ class RefUsers(models.Model):
 
 
 class Stocks(models.Model):
-    on_text = models.CharField(max_length=255)
-    off_text = models.CharField(max_length=255)
+    on_text = models.CharField(max_length=2048)
+    off_text = models.CharField(max_length=2048)
     status = models.BooleanField(default=True)
 
     class Meta:
