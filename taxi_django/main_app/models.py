@@ -73,7 +73,7 @@ class Shares(models.Model):
 
 class RefKey(models.Model):
     name = models.CharField(max_length=255)
-    key = models.IntegerField(unique=True)
+    key = models.BigIntegerField(unique=True)
     user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='ref_keys')
 
     class Meta:
@@ -96,3 +96,12 @@ class RefUsers(models.Model):
     def __str__(self):
         return f"{self.visiting_user.name} invited by {self.who_invited.name}"
 
+
+class Stocks(models.Model):
+    on_text = models.CharField(max_length=255)
+    off_text = models.CharField(max_length=255)
+    status = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = "Stocks"
+        verbose_name_plural = "Stocks"
