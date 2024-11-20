@@ -73,8 +73,8 @@ class Shares(models.Model):
 
 class RefKey(models.Model):
     name = models.CharField(max_length=255)
-    key = models.BigIntegerField(unique=True)
-    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='ref_keys')
+    key = models.CharField(unique=True)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='ref_keys', blank=True, null=True)
 
     class Meta:
         verbose_name = "Reference Key"
@@ -98,7 +98,7 @@ class RefUsers(models.Model):
 
 
 class Stocks(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, null=True, blank=True)
     on_text = models.CharField(max_length=2048)
     off_text = models.CharField(max_length=2048)
     status = models.BooleanField(default=True)

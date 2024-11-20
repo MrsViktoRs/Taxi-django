@@ -30,3 +30,19 @@ class StocksDetail(generics.RetrieveUpdateDestroyAPIView):
 
         self.perform_update(serializer)
         return JsonResponse(serializer.data)
+
+class RefKeyListCreateView(generics.ListCreateAPIView):
+    serializer_class = RefKeySerializer
+
+    def get_queryset(self):
+        queryset = RefKey.objects.all()
+        name = self.request.query_params.get('name', None)
+
+        if name:
+            queryset = queryset.filter(name__icontains=name)
+
+        return queryset
+
+class RefKeyRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = RefKey.objects.all()
+    serializer_class = RefKeySerializer

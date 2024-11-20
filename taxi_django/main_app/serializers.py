@@ -18,3 +18,9 @@ class StockSerializer(serializers.ModelSerializer):
                 validated_data.pop('off_text', None)
         instance = super().update(instance, validated_data)
         return instance
+
+
+class RefKeySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RefKey
+        fields = '__all__'
