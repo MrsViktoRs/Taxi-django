@@ -2,12 +2,12 @@ from django.db import models
 
 class Users(models.Model):
     chat_id = models.BigIntegerField()
-    name = models.CharField(max_length=255)
-    surname = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, null=True)
+    surname = models.CharField(max_length=255, null=True)
     patronymic = models.CharField(max_length=255, null=True, blank=True)
-    phone = models.BigIntegerField()
-    address = models.CharField(max_length=255)
-    permission_number = models.CharField(max_length=255)
+    phone = models.BigIntegerField(null=True)
+    address = models.CharField(max_length=255, null=True)
+    permission_number = models.CharField(max_length=255, null=True)
     auth_status = models.BooleanField(default=False)
     res_status = models.BooleanField(default=False)
 
