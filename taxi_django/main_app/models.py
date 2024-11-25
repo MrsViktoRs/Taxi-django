@@ -20,8 +20,8 @@ class Users(models.Model):
 
 
 class Role(models.Model):
-    name = models.CharField(max_length=255)
-    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='roles')
+    name = models.CharField(max_length=255, null=True, blank=True)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='roles', null=True, blank=True)
 
     class Meta:
         verbose_name = "Role"
@@ -32,10 +32,10 @@ class Role(models.Model):
 
 
 class Cars(models.Model):
-    model = models.CharField(max_length=255)
-    label = models.CharField(max_length=255)
-    gos_number = models.CharField(max_length=255)
-    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='cars')
+    model = models.CharField(max_length=255, null=True, blank=True)
+    label = models.CharField(max_length=255, null=True, blank=True)
+    gos_number = models.CharField(max_length=255, null=True, blank=True)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='cars', null=True, blank=True)
 
     class Meta:
         verbose_name = "Car"
@@ -46,11 +46,11 @@ class Cars(models.Model):
 
 
 class WorkingShifts(models.Model):
-    work_date = models.DateField()
-    begin_time = models.TimeField()
-    end_time = models.TimeField()
-    all_time = models.DurationField()  # Можно использовать DurationField для времени
-    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='working_shifts')
+    work_date = models.DateField(null=True, blank=True)
+    begin_time = models.TimeField(null=True, blank=True)
+    end_time = models.TimeField(null=True, blank=True)
+    all_time = models.DurationField(null=True, blank=True)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='working_shifts', null=True, blank=True)
 
     class Meta:
         verbose_name = "Working Shift"
@@ -61,7 +61,7 @@ class WorkingShifts(models.Model):
 
 
 class Shares(models.Model):
-    name = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='shares')
+    name = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='shares', null=True, blank=True)
 
     class Meta:
         verbose_name = "Share"
@@ -72,8 +72,8 @@ class Shares(models.Model):
 
 
 class RefKey(models.Model):
-    name = models.CharField(max_length=255)
-    key = models.CharField(unique=True)
+    name = models.CharField(max_length=255, null=True, blank=True)
+    key = models.CharField(unique=True, null=True, blank=True)
     user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='ref_keys', blank=True, null=True)
 
     class Meta:
@@ -85,8 +85,8 @@ class RefKey(models.Model):
 
 
 class RefUsers(models.Model):
-    who_invited = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='invited_users')
-    visiting_user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='visitors')
+    who_invited = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='invited_users', null=True, blank=True)
+    visiting_user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='visitors', null=True, blank=True)
     dt = models.DateField()
 
     class Meta:
@@ -99,9 +99,9 @@ class RefUsers(models.Model):
 
 class Stocks(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
-    on_text = models.CharField(max_length=2048)
-    off_text = models.CharField(max_length=2048)
-    status = models.BooleanField(default=True)
+    on_text = models.CharField(max_length=2048, null=True, blank=True)
+    off_text = models.CharField(max_length=2048, null=True, blank=True)
+    status = models.BooleanField(default=True, null=True, blank=True)
 
     class Meta:
         verbose_name = "Stocks"
