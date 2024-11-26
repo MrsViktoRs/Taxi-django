@@ -8,6 +8,7 @@ class Users(models.Model):
     phone = models.BigIntegerField(null=True)
     address = models.CharField(max_length=255, null=True)
     permission_number = models.CharField(max_length=255, null=True)
+    active_stocks = models.CharField(max_length=500, null=True, blank=True) # нужно записывать вкаких акциях он участвует
     auth_status = models.BooleanField(default=False)
     res_status = models.BooleanField(default=False)
 
@@ -106,3 +107,15 @@ class Stocks(models.Model):
     class Meta:
         verbose_name = "Stocks"
         verbose_name_plural = "Stocks"
+
+
+class Appeals(models.Model):
+    message = models.CharField(max_length=2048) # текст сообщения
+    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='appeals_mess') # от кого сообщения
+    dt = models.DateTimeField(auto_now_add=True) # дата
+    status = models.BooleanField(default=True) # статус активности
+    role = models.CharField(max_length=255) # тут либо appeal(обращение) либо help(помощь) потом возмодно добавим orders...
+
+    class Meta:
+        verbose_name = "Appeals"
+        verbose_name_plural = "Appeals"
