@@ -1,9 +1,9 @@
 from rest_framework import serializers
-import locale
+# import locale
 
 from .models import *
 
-locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
+# locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
 
 class StockSerializer(serializers.ModelSerializer):
     class Meta:
