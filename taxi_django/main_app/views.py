@@ -70,3 +70,17 @@ class AppealsView(generics.UpdateAPIView):
         except Appeals.DoesNotExist:
 
             return JsonResponse({"error": "Appeal not found."}, status=status.HTTP_404_NOT_FOUND)
+
+@csrf_exempt
+def get_user_status(request):
+    if request.method == 'GET':
+        phone = request.GET.get('phone')
+        if phone:
+            try:
+                user = Users.objects.get(phone=phone)
+                serializer = UserSerializer(user)
+                return JsonResponse({'res_status': serializer.data['res_status']})
+            except Users.DoesNotExist:
+                return JsonResponse({'status': 'not_found'}, status=404)
+        else:
+            return JsonResponse({'error': 'phone parameter is required'}, status=400)

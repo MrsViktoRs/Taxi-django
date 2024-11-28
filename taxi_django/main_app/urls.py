@@ -12,4 +12,5 @@ urlpatterns = [
     path('messages/poll/', get_messages, name='get_message'),
     path('all_history/', AppealsHistoryGet.as_view(), name='appeals'),
     path('all_history/<int:pk>/', AppealsView.as_view(), name='appeals-update'),
+    path('check_reg/', get_user_status, name='check_reg')
 ]
