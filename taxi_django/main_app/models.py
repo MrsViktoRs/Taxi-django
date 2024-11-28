@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models import CharField, ForeignKey, Model
+
 
 class Users(models.Model):
     chat_id = models.BigIntegerField()
@@ -119,3 +121,12 @@ class Appeals(models.Model):
     class Meta:
         verbose_name = "Appeals"
         verbose_name_plural = "Appeals"
+
+
+class Messages(models.Model):
+    message_id = CharField(null=True, blank=True)
+    user = ForeignKey(Users, on_delete=models.CASCADE, related_name='user_message')
+
+    class Meta:
+        verbose_name = 'Messages'
+        verbose_name_plural = "Messages"
