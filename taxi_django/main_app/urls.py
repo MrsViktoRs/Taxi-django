@@ -9,4 +9,7 @@ urlpatterns = [
     path('stocks/<int:pk>/', StocksDetail.as_view()),
     path('ref-keys/', RefKeyListCreateView.as_view()),
     path('ref-keys/<int:pk>/', RefKeyRetrieveUpdateDestroyView.as_view()),
+    path('messages/poll/', get_messages, name='get_message'),
+    path('all_history/', AppealsHistoryGet.as_view(), name='appeals'),
+    path('all_history/<int:pk>/', AppealsView.as_view(), name='appeals-update'),
 ]

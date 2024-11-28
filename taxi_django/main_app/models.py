@@ -111,7 +111,7 @@ class Stocks(models.Model):
 
 class Appeals(models.Model):
     message = models.CharField(max_length=2048) # текст сообщения
-    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='appeals_mess') # от кого сообщения
+    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='appeals_mess', null=True, blank=True) # от кого сообщения
     dt = models.DateTimeField(auto_now_add=True) # дата
     status = models.BooleanField(default=True) # статус активности
     role = models.CharField(max_length=255) # тут либо appeal(обращение) либо help(помощь) потом возмодно добавим orders...
