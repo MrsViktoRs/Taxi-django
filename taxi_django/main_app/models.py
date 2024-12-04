@@ -134,12 +134,12 @@ class Messages(models.Model):
 
 
 class YourTaxiPark(models.Model):
-    user = models.ForeignKey(Users.chat_id, on_delete=models.CASCADE, related_name='your_taxipark', null=True, blank=True)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='your_taxipark', null=True, blank=True)
     count_money = models.IntegerField(null=True, blank=True)
     count_invite = models.IntegerField(null=True, blank=True)
     date = models.DateField(null=True, blank=True)
 
 class VeryGoodDriver(models.Model):
-    user = models.ForeignKey(Users.chat_id, on_delete=models.CASCADE, related_name='VeryGoodDriver')
+    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='VeryGoodDriver')
     count_drive = models.IntegerField()
     date = models.DateField()
