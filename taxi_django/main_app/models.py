@@ -13,6 +13,7 @@ class Users(models.Model):
     active_stocks = models.CharField(max_length=500, null=True, blank=True) # нужно записывать вкаких акциях он участвует
     auth_status = models.BooleanField(default=False)
     res_status = models.BooleanField(default=False)
+    self_worker = models.CharField(max_length=500, null=True, blank=True)
 
     class Meta:
         verbose_name = "User"
@@ -130,3 +131,15 @@ class Messages(models.Model):
     class Meta:
         verbose_name = 'Messages'
         verbose_name_plural = "Messages"
+
+
+class YourTaxiPark(models.Model):
+    user = models.ForeignKey(Users.chat_id, on_delete=models.CASCADE, related_name='your_taxipark', null=True, blank=True)
+    count_money = models.IntegerField(null=True, blank=True)
+    count_invite = models.IntegerField(null=True, blank=True)
+    date = models.DateField(null=True, blank=True)
+
+class VeryGoodDriver(models.Model):
+    user = models.ForeignKey(Users.chat_id, on_delete=models.CASCADE, related_name='VeryGoodDriver')
+    count_drive = models.IntegerField()
+    date = models.DateField()

@@ -1,4 +1,8 @@
+from time import perf_counter
+
 import requests
+import json
+import os
 from rest_framework import generics, status
 from rest_framework.exceptions import ValidationError
 from rest_framework.generics import ListAPIView
@@ -77,7 +81,7 @@ class AppealsView(generics.UpdateAPIView):
 def get_user_status(request):
     if request.method == 'GET':
         try:
-            user = Users.objects.filter(res_status=False)
+            user = Users.objects.filter(res_status=True, auth_status=False)
             serializer = UserSerializer(user, many=True)
             return JsonResponse(serializer.data, safe=False)
         except Users.DoesNotExist:
@@ -86,22 +90,90 @@ def get_user_status(request):
 
 class SendMessageView(View):
     def post(self, request, *args, **kwargs):
-        chat_id = request.GET.get('chat_id')
-        message = 'тест'
+        try:
+            # Получаем чат id и отправляем запрос
+            data = json.loads(request.body)
+            chat_id = data.get('chat_id')
+            message = 'Ваша заявка на регистрацию отправлена.'
+            url = f'https://api.telegram.org/bot{os.getenv("BOT_TOKEN")}/sendMessage'
+            payload = {
+                'chat_id': chat_id,
+                'text': message
+            }
+            response = requests.post(url, json=payload)
 
-        if not message:
-            return JsonResponse({'error': 'Message content cannot be empty.'}, status=400)
+            if response.status_code == 200:
+                # После отправки сообщение добавляем message_id в БД
+                user = Users.objects.filter(chat_id=chat_id).first()
+                json_answer = response.json()
+                message_id = json_answer['result']['message_id']
+                Messages.objects.create(
+                    user_id=user.id,
+                    message_id=message_id,
+                )
+                return JsonResponse({'status': 'Message send successfully!'})
+            else:
+                return JsonResponse({'error': 'Failed to send message.'}, status=response.status_code)
+        except Exception as err:
+            print(err)
 
-        token = '7754471910:AAGJ0T8CHy6MP4CsSr-pkqU0syYAHXWeX04'
-        url = f'https://api.telegram.org/bot{token}/sendMessage'
-        payload = {
-            'chat_id': chat_id,
-            'text': message
-        }
 
-        response = requests.post(url, json=payload)
+class DeleteMessageView(View):
+    def post(self, request, *args, **kwargs):
+        try:
+            # Получаем чат id
+            data = json.loads(request.body)
+            chat_id = data.get('chat_id')
+            # Находим юзера
+            user = Users.objects.filter(chat_id=chat_id).first()
+            if not user:
+                return JsonResponse({'error': 'User not found'}, status=404)
+            # Меняем статус
+            user.auth_status = True
+            user.save()
+            # Находим и удаляем старое сообщение
+            message = Messages.objects.filter(user_id=user.id).first()
+            if not message:
+                return JsonResponse({'error': 'Message for delete not found'}, status=404)
+            else:
+                url = f'https://api.telegram.org/bot{os.getenv("BOT_TOKEN")}/deleteMessage'
+                payload = {
+                    'chat_id': chat_id,
+                    'message_id': message.message_id
+                }
+                response_del_mess = requests.post(url, data=payload)
+                if response_del_mess.status_code == 200:
+                    message.delete()
 
-        if response.status_code == 200:
-            return JsonResponse({'status': 'Message sent successfully!'})
-        else:
-            return JsonResponse({'error': 'Failed to send message.'}, status=response.status_code)
+            # Отправляем новое сообщение с клавиатурой и записыаем message_id в БД
+            url_accep_mess = f'https://api.telegram.org/bot{os.getenv("BOT_TOKEN")}/sendMessage'
+            text = ('Таксопарк “Экспансия” представлен в других соц.сетях.\n'
+                    'Наш канал в Telegram{}💬 где мы регулярно публикуем новости из мира автомобилей.\n'
+                    'Наш канал на YouTube{}📹 и VkVideo{} 🎞 где мы публикуем развлекательный и информативный контент.\n'
+                    'Будь в теме с “Экспансией”!')
+            payload_accep_mess = {
+                "chat_id": chat_id,
+                "text": text,
+                "reply_markup": {
+                    "inline_keyboard":
+                        [
+                            [{"text": "Смена", "callback_data": "shift"}],
+                            [{"text": "Бонусы и акции", "callback_data": "bonus"}],
+                            [{"text": "Твоя статистика", "callback_data": "my_stats"}, {"text": "Управление профилем", "callback_data": "profile"}],
+                            [{"text": "Информация о парке", "callback_data": "info_park"}, {"text": "Связь с нами", "callback_data": "call_for"}],
+                        ]
+                }
+            }
+            response_accep_mess = requests.post(url_accep_mess, json=payload_accep_mess)
+            if response_accep_mess.status_code == 200:
+                res_accep_mess_json = response_accep_mess.json()
+                Messages.objects.create(
+                    user_id=user.id,
+                    message_id=res_accep_mess_json['result']['message_id'],
+                )
+                return JsonResponse({'status': 'Message deleted successfully and send new message!'}, status=200)
+            else:
+                return JsonResponse({'error': 'New message not send.'}, status=response_accep_mess.status_code)
+
+        except Exception as err:
+            print(err)

@@ -14,4 +14,5 @@ urlpatterns = [
     path('all_history/<int:pk>/', AppealsView.as_view(), name='appeals-update'),
     path('check_reg/', get_user_status, name='check_reg'),
     path('send_message/', SendMessageView.as_view()),
+    path('accept_message/', DeleteMessageView.as_view()),
 ]
