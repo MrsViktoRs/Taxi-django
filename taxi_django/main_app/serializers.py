@@ -33,6 +33,11 @@ class UserSerializer(serializers.ModelSerializer):
         model = Users
         fields = '__all__'
 
+class RoleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Role
+        fields = '__all__'
+
 
 class AppealsSerializer(serializers.ModelSerializer):
     formatted_dt = serializers.SerializerMethodField('get_formatted_dt')

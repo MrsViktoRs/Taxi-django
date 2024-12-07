@@ -1,5 +1,4 @@
-from time import perf_counter
-
+import logging
 import requests
 import json
 import os
@@ -10,9 +9,12 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views import View
 from rest_framework.decorators import action
+from rest_framework.views import APIView
 
 from .models import *
 from .serializers import *
+
+logger = logging.getLogger(__name__)
 
 class StockView(ListAPIView):
     serializer_class = StockSerializer
@@ -121,51 +123,76 @@ class SendMessageView(View):
 class DeleteMessageView(View):
     def post(self, request, *args, **kwargs):
         try:
-            # Получаем чат id
             data = json.loads(request.body)
             chat_id = data.get('chat_id')
-            # Находим юзера
             user = Users.objects.filter(chat_id=chat_id).first()
             if not user:
                 return JsonResponse({'error': 'User not found'}, status=404)
-            # Меняем статус
+            role = Role.objects.filter(user_id=user.id).first()
+            if not role:
+                logger.warning(f'request: /accept_message/ \nstatus: role is {role}')
+                return JsonResponse({"error": "Role not found"}, status=403, safe=False)
+            message = Messages.objects.filter(user_id=user.id).all()
             user.auth_status = True
             user.save()
-            # Находим и удаляем старое сообщение
-            message = Messages.objects.filter(user_id=user.id).first()
-            if not message:
-                return JsonResponse({'error': 'Message for delete not found'}, status=404)
-            else:
+            if len(message) != 0:
                 url = f'https://api.telegram.org/bot{os.getenv("BOT_TOKEN")}/deleteMessage'
-                payload = {
-                    'chat_id': chat_id,
-                    'message_id': message.message_id
-                }
-                response_del_mess = requests.post(url, data=payload)
-                if response_del_mess.status_code == 200:
-                    message.delete()
-
-            # Отправляем новое сообщение с клавиатурой и записыаем message_id в БД
+                for mess in message:
+                    payload = {
+                        'chat_id': chat_id,
+                        'message_id': mess.message_id
+                    }
+                    response_del_mess = requests.post(url, data=payload)
+                    if response_del_mess.status_code != 200:
+                        logger.warning(f'Сообщение не удалено, статус Telegram: {response_del_mess.status_code}')
+                        mess.delete()
+                    else:
+                        mess.delete()
+            else:
+                logger.warning('Сообщений для удаления нет')
             url_accep_mess = f'https://api.telegram.org/bot{os.getenv("BOT_TOKEN")}/sendMessage'
-            text = ('Таксопарк “Экспансия” представлен в других соц.сетях.\n'
-                    'Наш канал в Telegram{}💬 где мы регулярно публикуем новости из мира автомобилей.\n'
-                    'Наш канал на YouTube{}📹 и VkVideo{} 🎞 где мы публикуем развлекательный и информативный контент.\n'
-                    'Будь в теме с “Экспансией”!')
-            payload_accep_mess = {
-                "chat_id": chat_id,
-                "text": text,
-                "reply_markup": {
-                    "inline_keyboard":
-                        [
-                            [{"text": "Смена", "callback_data": "shift"}],
-                            [{"text": "Бонусы и акции", "callback_data": "bonus"}],
-                            [{"text": "Твоя статистика", "callback_data": "my_stats"}, {"text": "Управление профилем", "callback_data": "profile"}],
-                            [{"text": "Информация о парке", "callback_data": "info_park"}, {"text": "Связь с нами", "callback_data": "call_for"}],
-                        ]
+            if role.name == 'driver':
+                text = ('Таксопарк “Экспансия” представлен в других соц.сетях.\n'
+                        'Наш канал в Telegram{}💬 где мы регулярно публикуем новости из мира автомобилей.\n'
+                        'Наш канал на YouTube{}📹 и VkVideo{} 🎞 где мы публикуем развлекательный и информативный контент.\n'
+                        'Будь в теме с “Экспансией”!')
+                payload_accep_mess = {
+                    "chat_id": chat_id,
+                    "text": text,
+                    "reply_markup": {
+                        "inline_keyboard":
+                            [
+                                [{"text": "Смена", "callback_data": "shift"}],
+                                [{"text": "Бонусы и акции", "callback_data": "bonus"}],
+                                [{"text": "Твоя статистика", "callback_data": "my_stats"}, {"text": "Управление профилем", "callback_data": "profile"}],
+                                [{"text": "Информация о парке", "callback_data": "info_park"}, {"text": "Связь с нами", "callback_data": "call_for"}],
+                            ]
+                    }
                 }
-            }
-            response_accep_mess = requests.post(url_accep_mess, json=payload_accep_mess)
-            if response_accep_mess.status_code == 200:
+                response_accep_mess = requests.post(url_accep_mess, json=payload_accep_mess)
+            elif role.name == 'partner':
+                text = ('Таксопарк “Экспансия” представлен в других соц.сетях.\n'
+                        'Наш канал в Telegram{}💬 где мы регулярно публикуем новости из мира автомобилей.\n'
+                        'Наш канал на YouTube{}📹 и VkVideo{} 🎞 где мы публикуем развлекательный и информативный контент.\n'
+                        'Будь в теме с “Экспансией”!')
+                payload_accep_mess = {
+                    "chat_id": chat_id,
+                    "text": text,
+                    "reply_markup": {
+                        "inline_keyboard":
+                            [
+                                [{"text": "Профиль партнера", "callback_data": "profile_parther"}],
+                                [{"text": "Статистика по акциям", "callback_data": "stats_action"}],
+                                [{"text": "Информация о парке", "callback_data": "about_taxi_park"}],
+                                [{"text": "Связь с нами", "callback_data": "contact_us"}],
+                            ]
+                    }
+                }
+                response_accep_mess = requests.post(url_accep_mess, json=payload_accep_mess)
+            else:
+                logger.warning(f'Нет такой роли\nUser: \nid: {user.id} \nchat_id:{user.chat_id} \nphone: {user.phone}')
+                return JsonResponse({'status': 'role is not found'}, status=403)
+            if response_accep_mess.status_code != 200:
                 res_accep_mess_json = response_accep_mess.json()
                 Messages.objects.create(
                     user_id=user.id,
@@ -176,4 +203,17 @@ class DeleteMessageView(View):
                 return JsonResponse({'error': 'New message not send.'}, status=response_accep_mess.status_code)
 
         except Exception as err:
-            print(err)
+            logger.error(err)
+
+
+class UserRetrieveView(APIView):
+    def get(self, request, phone):
+        try:
+            user = Users.objects.get(phone=phone)
+            serializer = UserSerializer(user)
+
+            return JsonResponse(serializer.data, status=status.HTTP_200_OK)
+
+        except Users.DoesNotExist:
+            return JsonResponse({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
+
