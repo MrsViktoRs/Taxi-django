@@ -71,9 +71,9 @@ class AppealsView(generics.UpdateAPIView):
     def update(self, request, *args, **kwargs):
         id = kwargs.get('pk')
         try:
-            appeal = Appeals.objects.get(id=id)  # Получаем объект Appeals по id
-            appeal.status = False  # Меняем статус на False
-            appeal.save()  # Сохраняем изменения
+            appeal = Appeals.objects.get(id=id)
+            appeal.status = False
+            appeal.save()
             return JsonResponse({"message": "Status updated successfully!"}, status=status.HTTP_200_OK)
         except Appeals.DoesNotExist:
 
@@ -93,7 +93,6 @@ def get_user_status(request):
 class SendMessageView(View):
     def post(self, request, *args, **kwargs):
         try:
-            # Получаем чат id и отправляем запрос
             data = json.loads(request.body)
             chat_id = data.get('chat_id')
             message = 'Ваша заявка на регистрацию отправлена.'
@@ -105,7 +104,6 @@ class SendMessageView(View):
             response = requests.post(url, json=payload)
 
             if response.status_code == 200:
-                # После отправки сообщение добавляем message_id в БД
                 user = Users.objects.filter(chat_id=chat_id).first()
                 json_answer = response.json()
                 message_id = json_answer['result']['message_id']

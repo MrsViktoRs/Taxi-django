@@ -14,6 +14,7 @@ class Users(models.Model):
     auth_status = models.BooleanField(default=False)
     res_status = models.BooleanField(default=False)
     self_worker = models.CharField(max_length=500, null=True, blank=True)
+    fleet_id = models.BigIntegerField(max_length=500, null=True, blank=True)
 
     class Meta:
         verbose_name = "User"
