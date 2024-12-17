@@ -8,6 +8,7 @@ from rest_framework.generics import ListAPIView
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views import View
+from django.db.models import Q
 from rest_framework.decorators import action
 from rest_framework.views import APIView
 
@@ -43,9 +44,13 @@ class RefKeyListCreateView(generics.ListCreateAPIView):
     def get_queryset(self):
         queryset = RefKey.objects.all()
         name = self.request.query_params.get('name', None)
+        phone = self.request.query_params.get('phone', None)
 
         if name:
             queryset = queryset.filter(name__icontains=name)
+
+        if phone:
+            queryset = queryset.filter(user__phone__icontains=phone)
 
         return queryset
 
@@ -62,8 +67,20 @@ def get_messages(request):
         return JsonResponse(serializer.data, safe=False)
 
 class AppealsHistoryGet(generics.ListCreateAPIView):
-    queryset = Appeals.objects.filter(status=False).order_by('-dt')
     serializer_class = AppealsSerializer
+
+    def get_queryset(self):
+        query = self.request.query_params.get('search', None)
+        queryset = Appeals.objects.filter(status=False).order_by('-dt')
+
+        if query:
+            queryset = queryset.filter(
+                Q(user__name__icontains=query) |  # Поиск по имени
+                Q(user__surname__icontains=query) |  # Поиск по фамилии
+                Q(user__patronymic__icontains=query)  # Поиск по отчеству
+            )
+
+        return queryset
 
 class AppealsView(generics.UpdateAPIView):
     serializer_class = AppealsSerializer
@@ -215,3 +232,18 @@ class UserRetrieveView(APIView):
         except Users.DoesNotExist:
             return JsonResponse({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
 
+
+class ActiveMessageView(APIView):
+    def post(self, request):
+        serializer = ActiveMessageSerializer(data=request.data)
+        if serializer.is_valid():
+            whom_value = serializer.validated_data['whom']
+            if whom_value == 'всем':
+                serializer.validated_data['whom'] = 'all'
+            elif whom_value == 'водителям':
+                serializer.validated_data['whom'] = 'driver'
+            elif whom_value == 'партнёрам':
+                serializer.validated_data['whom'] = 'partner'
+            serializer.save()
+            return JsonResponse('True', status=status.HTTP_201_CREATED, safe=False)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

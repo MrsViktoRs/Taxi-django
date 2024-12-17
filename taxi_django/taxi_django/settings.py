@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from datetime import timedelta
 
 load_dotenv()
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'django_celery_beat',
     'rest_framework',
     'corsheaders',
     'main_app',
@@ -150,8 +152,15 @@ LOGGING = {
     },
 }
 
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
 
-# Internationalization
+CELERY_BEAT_SCHEDULE = {
+    'send-messages-every-10-seconds': {
+        'task': 'taxi_django.tasks.send_messages',
+        'schedule': timedelta(seconds=10),
+    },
+}
+
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
 LANGUAGE_CODE = 'ru-RU'

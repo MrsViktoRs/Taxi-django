@@ -56,3 +56,16 @@ class AppealsSerializer(serializers.ModelSerializer):
         model = Appeals
         fields = ['id', 'message', 'user', 'formatted_dt', 'status', 'role']
         extra_kwargs = {'dt': {'source': 'get_formatted_dt'}}
+
+
+class ActiveMessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ActiveMessage
+        fields = ['date_from', 'date_to', 'time', 'whom', 'message']
+
+    def validate_whom(self, value):
+        # Проверка допустимых значений для поля 'whom'
+        allowed_values = ['всем', 'водителям', 'партнёрам']
+        if value not in allowed_values:
+            raise serializers.ValidationError("Поле 'whom' должно быть одним из значений: всем, водителям, партнёрам.")
+        return value

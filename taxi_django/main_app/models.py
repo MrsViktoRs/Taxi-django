@@ -15,6 +15,7 @@ class Users(models.Model):
     res_status = models.BooleanField(default=False)
     self_worker = models.CharField(max_length=500, null=True, blank=True)
     fleet_id = models.BigIntegerField(null=True, blank=True)
+    card_number = models.BigIntegerField(null=True, blank=True)
 
     class Meta:
         verbose_name = "User"
@@ -144,3 +145,11 @@ class VeryGoodDriver(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='VeryGoodDriver')
     count_drive = models.IntegerField()
     date = models.DateField()
+
+# для отправки сообщений
+class ActiveMessage (models.Model):
+    date_from = models.DateField(null=True, blank=True)
+    date_to = models.DateField(null=True, blank=True)
+    time = models.TimeField(null=True, blank=True)
+    whom = models.CharField(max_length=300)
+    message = CharField(max_length=2048)

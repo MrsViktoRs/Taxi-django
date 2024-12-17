@@ -15,5 +15,6 @@ urlpatterns = [
     path('check_reg/', get_user_status, name='check_reg'),
     path('send_message/', SendMessageView.as_view()),
     path('accept_message/', DeleteMessageView.as_view()),
-    path('getUser/<int:phone>', UserRetrieveView.as_view())
+    path('getUser/<int:phone>', UserRetrieveView.as_view()),
+    path('saveMessage/', ActiveMessageView.as_view())
 ]
