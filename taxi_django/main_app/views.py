@@ -295,3 +295,13 @@ class ActiveMessageView(APIView):
             return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except ActiveMessage.DoesNotExist as err:
             return JsonResponse(err, status=status.HTTP_404_NOT_FOUND)
+
+
+class PartnerListAPIView(ListAPIView):
+    queryset = Users.objects.filter(auth_status=False)
+    serializer_class = UserSerializer
+    logger.warning(queryset)
+    def get_queryset(self):
+        qs = super().get_queryset()
+        partner_users = qs.filter(roles__name='partner')
+        return partner_users
