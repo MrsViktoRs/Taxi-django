@@ -240,6 +240,20 @@ class UserRetrieveView(APIView):
         except Users.DoesNotExist:
             return JsonResponse({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
 
+    def post(self, request, phone):
+        try:
+            user = Users.objects.get(phone=phone)
+            data = request.data
+            serializer = UserSerializer(instance=user, data=data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
+            else:
+                return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST, safe=False)
+
+        except Users.DoesNotExist:
+            return JsonResponse({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
+
 
 class ActiveMessageView(APIView):
 

@@ -63,11 +63,11 @@ class ActiveMessageSerializer(serializers.ModelSerializer):
         model = ActiveMessage
         fields = ['date_from', 'date_to', 'time', 'whom', 'message', 'id']
 
-    def validate_whom(self, value):
-        allowed_values = ['Всем', 'Водителям', 'Партнёрам']
-        if value not in allowed_values:
-            raise serializers.ValidationError("Поле 'whom' должно быть одним из значений: всем, водителям, партнёрам.")
-        return value
+    # def validate_whom(self, value):
+    #     allowed_values = ['Всем', 'Водителям', 'Партнёрам']
+    #     if value not in allowed_values:
+    #         raise serializers.ValidationError("Поле 'whom' должно быть одним из значений: всем, водителям, партнёрам.")
+    #     return value
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
