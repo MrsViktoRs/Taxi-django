@@ -8,14 +8,13 @@ class Users(models.Model):
     surname = models.CharField(max_length=255, null=True)
     patronymic = models.CharField(max_length=255, null=True, blank=True)
     phone = models.BigIntegerField(null=True)
-    address = models.CharField(max_length=255, null=True)
     permission_number = models.CharField(max_length=255, null=True)
     active_stocks = models.CharField(max_length=500, null=True, blank=True) # нужно записывать вкаких акциях он участвует
     auth_status = models.BooleanField(default=False)
     res_status = models.BooleanField(default=False)
     self_worker = models.CharField(max_length=500, null=True, blank=True)
     fleet_id = models.BigIntegerField(null=True, blank=True)
-    card_number = models.BigIntegerField(null=True, blank=True)
+    card_number = models.CharField(max_length=300, null=True, blank=True)
 
     class Meta:
         verbose_name = "User"
@@ -81,6 +80,7 @@ class RefKey(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
     key = models.CharField(unique=True, null=True, blank=True)
     user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='ref_keys', blank=True, null=True)
+    count_invite = models.IntegerField(null=True, blank=True)
 
     class Meta:
         verbose_name = "Reference Key"

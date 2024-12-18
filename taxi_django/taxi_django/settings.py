@@ -143,23 +143,25 @@ LOGGING = {
             'formatter': 'verbose',
         },
     },
-    'loggers': {
-        'django': {
-            'handlers': ['warning_file', 'error_file'],
-            'level': 'WARNING',
-            'propagate': True,
-        },
-    },
+    # 'loggers': {
+    #     'django': {
+    #         'handlers': ['warning_file', 'error_file'],
+    #         'level': 'WARNING',
+    #         'propagate': True,
+    #     },
+    #     'celery': {
+    #         'handlers': ['console'],
+    #         'level': 'INFO',
+    #     },
+    # },
 }
 
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
-
-CELERY_BEAT_SCHEDULE = {
-    'send-messages-every-10-seconds': {
-        'task': 'taxi_django.tasks.send_messages',
-        'schedule': timedelta(seconds=10),
-    },
-}
+REDIS_HOST = 'localhost'
+REDIS_PORT = '6379'
+BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 

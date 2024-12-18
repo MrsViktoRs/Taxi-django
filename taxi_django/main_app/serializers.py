@@ -61,11 +61,20 @@ class AppealsSerializer(serializers.ModelSerializer):
 class ActiveMessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ActiveMessage
-        fields = ['date_from', 'date_to', 'time', 'whom', 'message']
+        fields = ['date_from', 'date_to', 'time', 'whom', 'message', 'id']
 
     def validate_whom(self, value):
-        # Проверка допустимых значений для поля 'whom'
-        allowed_values = ['всем', 'водителям', 'партнёрам']
+        allowed_values = ['Всем', 'Водителям', 'Партнёрам']
         if value not in allowed_values:
             raise serializers.ValidationError("Поле 'whom' должно быть одним из значений: всем, водителям, партнёрам.")
         return value
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        whom_mapping = {
+            'all': 'Всем',
+            'partner': 'Партнёрам',
+            'driver': 'Водителям'
+        }
+        data['whom'] = whom_mapping.get(data['whom'], data['whom'])
+        return data

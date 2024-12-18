@@ -186,10 +186,18 @@ class DeleteMessageView(View):
                 }
                 response_accep_mess = requests.post(url_accep_mess, json=payload_accep_mess)
             elif role.name == 'partner':
-                text = ('Таксопарк “Экспансия” представлен в других соц.сетях.\n'
-                        'Наш канал в Telegram{}💬 где мы регулярно публикуем новости из мира автомобилей.\n'
-                        'Наш канал на YouTube{}📹 и VkVideo{} 🎞 где мы публикуем развлекательный и информативный контент.\n'
-                        'Будь в теме с “Экспансией”!')
+                text = (
+                    'Привет, {Name}. Рады видеть в нашей команде✋!'
+                    'В разделе “Информация” ты можешь найти🔍:'
+                    'Подробную инструкцию по использованию телеграм бота🤖, обязательно ознакомься перед началом использования🤓, также мы собрали самую важную информацию и тонкости по работе в такси. Все это ты можешь найти нажав кнопку “Начало работы”▶️.'
+                    'А если хочешь зарабатывать больше - ознакомься с проводимыми акциями нажав кнопку  “Бонусы и Акции”💵!'
+                    'При успешной регистрации партнера и подтверждении от диспетчера'
+                    'Привет, {Name}. Рады видеть в нашей команде!'
+                    'В разделе “Информация” ты можешь найти:'
+                    'Ответы на большинство вопросов есть в разделе по кнопке “Часто задаваемые вопросы”❓.'
+                    'А если хочешь зарабатывать больше - ознакомься с проводимыми акциями нажав кнопку  “Бонусы и Акции”💵!'
+                    'Если у тебя останутся  вопросы, ты найдешь как с нами связаться в разделе "Связь с нами" ➡️ “Связь с диспетчером”☎️ .'
+                )
                 payload_accep_mess = {
                     "chat_id": chat_id,
                     "text": text,
@@ -234,16 +242,42 @@ class UserRetrieveView(APIView):
 
 
 class ActiveMessageView(APIView):
+
+    def get(self, request):
+        messages = ActiveMessage.objects.all()
+        serializer = ActiveMessageSerializer(messages, many=True)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
+
     def post(self, request):
         serializer = ActiveMessageSerializer(data=request.data)
         if serializer.is_valid():
             whom_value = serializer.validated_data['whom']
-            if whom_value == 'всем':
+            if whom_value == 'Всем':
                 serializer.validated_data['whom'] = 'all'
-            elif whom_value == 'водителям':
+            elif whom_value == 'Водителям':
                 serializer.validated_data['whom'] = 'driver'
-            elif whom_value == 'партнёрам':
+            elif whom_value == 'Партнёрам':
                 serializer.validated_data['whom'] = 'partner'
             serializer.save()
             return JsonResponse('True', status=status.HTTP_201_CREATED, safe=False)
         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk=None):
+        try:
+            message = ActiveMessage.objects.get(pk=pk)
+            message.delete()
+            return JsonResponse(data='Сообщение удалено', status=status.HTTP_204_NO_CONTENT, safe=False)
+        except ActiveMessage.DoesNotExist:
+            return JsonResponse(data='Сообщение не удалено', status=status.HTTP_404_NOT_FOUND, safe=False)
+
+    def put(self, request, pk=None):
+        try:
+            message = ActiveMessage.objects.get(pk=pk)
+            serializer = ActiveMessageSerializer(message, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return JsonResponse(serializer.data, status=status.HTTP_200_OK)
+
+            return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except ActiveMessage.DoesNotExist as err:
+            return JsonResponse(err, status=status.HTTP_404_NOT_FOUND)

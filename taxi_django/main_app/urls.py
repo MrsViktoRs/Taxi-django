@@ -16,5 +16,6 @@ urlpatterns = [
     path('send_message/', SendMessageView.as_view()),
     path('accept_message/', DeleteMessageView.as_view()),
     path('getUser/<int:phone>', UserRetrieveView.as_view()),
-    path('saveMessage/', ActiveMessageView.as_view())
+    path('saveMessage/', ActiveMessageView.as_view()),
+    path('saveMessage/<int:pk>/', ActiveMessageView.as_view())
 ]
