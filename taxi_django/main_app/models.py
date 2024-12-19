@@ -3,8 +3,9 @@ from django.db.models import CharField, ForeignKey, Model
 
 
 class Tariffs(models.Model):
+    service_id = models.CharField()
     name = models.CharField()
-    is_enabled = models.CharField()
+    is_enabled = models.BooleanField()
 
 
 class Users(models.Model):
@@ -20,7 +21,7 @@ class Users(models.Model):
     self_worker = models.CharField(max_length=500, null=True, blank=True)
     fleetid = models.CharField(max_length=255, null=True, blank=True)
     card_number = models.CharField(max_length=300, null=True, blank=True)
-    tariff = models.ForeignKey(Tariffs, on_delete=models.CASCADE, related_name='tariffs')
+    tariff = models.ForeignKey(Tariffs, on_delete=models.CASCADE, related_name='tariffs', null=True, blank=True)
 
     class Meta:
         verbose_name = "User"
