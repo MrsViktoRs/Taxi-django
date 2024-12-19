@@ -2,6 +2,11 @@ from django.db import models
 from django.db.models import CharField, ForeignKey, Model
 
 
+class Tariffs(models.Model):
+    name = models.CharField()
+    is_enabled = models.CharField()
+
+
 class Users(models.Model):
     chat_id = models.BigIntegerField()
     name = models.CharField(max_length=255, null=True)
@@ -15,6 +20,7 @@ class Users(models.Model):
     self_worker = models.CharField(max_length=500, null=True, blank=True)
     fleetid = models.CharField(max_length=255, null=True, blank=True)
     card_number = models.CharField(max_length=300, null=True, blank=True)
+    tariff = models.ForeignKey(Tariffs, on_delete=models.CASCADE, related_name='tariffs')
 
     class Meta:
         verbose_name = "User"
