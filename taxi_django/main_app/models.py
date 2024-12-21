@@ -165,6 +165,7 @@ class VeryGoodDriver(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='VeryGoodDriver')
     count_drive = models.IntegerField()
     date = models.DateField()
+    total_day = models.IntegerField(null=True, blank=True)
 
 # для отправки сообщений
 class ActiveMessage (models.Model):
