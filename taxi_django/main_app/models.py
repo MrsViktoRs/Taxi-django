@@ -3,7 +3,7 @@ from django.db.models import CharField, ForeignKey
 
 
 class Tariffs(models.Model):
-    service_id = models.CharField(null=True, blank=True)
+    serviceid = models.CharField(null=True, blank=True)
     name = models.CharField(null=True, blank=True)
     is_enabled = models.BooleanField(null=True, blank=True)
 
