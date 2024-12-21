@@ -18,7 +18,7 @@ class Users(models.Model):
     active_stocks = models.CharField(max_length=500, null=True, blank=True) # нужно записывать вкаких акциях он участвует
     auth_status = models.BooleanField(default=False)
     res_status = models.BooleanField(default=False)
-    self_worker = models.CharField(max_length=500, null=True, blank=True)
+    self_worker = models.BooleanField(null=True, blank=True)
     fleetid = models.CharField(max_length=255, null=True, blank=True)
     card_number = models.CharField(max_length=300, null=True, blank=True)
     tariff = models.ForeignKey(Tariffs, on_delete=models.CASCADE, related_name='tariffs', null=True, blank=True)
