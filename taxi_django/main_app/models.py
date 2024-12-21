@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import CharField, ForeignKey
+from django.contrib.auth.hashers import check_password as django_check_password
 
 
 class Tariffs(models.Model):
@@ -32,9 +33,11 @@ class Users(models.Model):
 
 
 class UserCredentials(models.Model):
-    user = models.OneToOneField(Users, on_delete=models.CASCADE)
     username = models.CharField(max_length=150, unique=True)
     password = models.CharField(max_length=128)
+
+    def check_password(self, raw_password):
+        return django_check_password(raw_password, self.password)
 
     class Meta:
         verbose_name = "User Credentials"

@@ -9,7 +9,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views import View
 from django.db.models import Q
-from rest_framework.status import HTTP_201_CREATED
+from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST, HTTP_409_CONFLICT
 from rest_framework.views import APIView
 from django.contrib.auth.hashers import make_password
 from rest_framework.response import Response
@@ -21,28 +21,27 @@ from .serializers import *
 logger = logging.getLogger(__name__)
 
 
-class CreateUserView(APIView):
+class CreateAdminView(APIView):
     def post(self, request):
         username = request.data.get('username')
+        print(username)
         password = make_password(request.data.get('password'))
-        name = request.data.get('name')
-        surname = request.data.get('surname')
+        try:
+            UserCredentials.objects.create(username=username, password=password)
+        except Exception:
+            return JsonResponse(f'username already exists', safe=False, status=HTTP_409_CONFLICT)
 
-        user = Users.objects.create(name=name, surname=surname)
-        credentials = UserCredentials.objects.create(user=user, username=username, password=password)
-
-        return JsonResponse({'message': 'User created successfully'}, safe=False, status=HTTP_201_CREATED)
+        return JsonResponse(f"Create amdin", safe=False, status=HTTP_201_CREATED)
 
 
 class LoginView(APIView):
     def post(self, request):
-        username = request.data.get('username')
-        password = request.data.get('password')
-
+        data = request.data['regData']
+        print(data)
         try:
-            credentials = UserCredentials.objects.get(username=username)
-            if credentials.user.check_password(password):
-                access_token = AccessToken.for_user(credentials.user)
+            credentials = UserCredentials.objects.get(username=data['username'])
+            if credentials.check_password(data['password']):
+                access_token = AccessToken.for_user(credentials)
                 return Response({'token': str(access_token)}, status=200)
             else:
                 return Response({'error': 'Invalid credentials'}, status=400)

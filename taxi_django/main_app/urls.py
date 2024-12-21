@@ -5,6 +5,8 @@ from .views import *
 app_name = 'main_app'
 
 urlpatterns = [
+    path('create_user/', CreateAdminView.as_view()),
+    path('login/', LoginView.as_view()),
     path('stocks/', StockView.as_view()),
     path('stocks/<int:pk>/', StocksDetail.as_view()),
     path('ref-keys/', RefKeyListCreateView.as_view()),

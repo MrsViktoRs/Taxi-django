@@ -25,7 +25,7 @@ class Command(BaseCommand):
                   'name': 'Фиксированный'}]
         for data in rules:
             tariff = Tariffs.objects.create(
-                service_id=data['id'],
+                serviceid=data['id'],
                 is_enabled=data['is_enabled'],
                 name=data['name']
             )
