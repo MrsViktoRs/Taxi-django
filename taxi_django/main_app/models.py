@@ -1,11 +1,11 @@
 from django.db import models
-from django.db.models import CharField, ForeignKey, Model
+from django.db.models import CharField, ForeignKey
 
 
 class Tariffs(models.Model):
-    service_id = models.CharField()
-    name = models.CharField()
-    is_enabled = models.BooleanField()
+    service_id = models.CharField(null=True, blank=True)
+    name = models.CharField(null=True, blank=True)
+    is_enabled = models.BooleanField(null=True, blank=True)
 
 
 class Users(models.Model):
@@ -29,6 +29,16 @@ class Users(models.Model):
 
     def __str__(self):
         return f"{self.name} {self.surname}"
+
+
+class UserCredentials(models.Model):
+    user = models.OneToOneField(Users, on_delete=models.CASCADE)
+    username = models.CharField(max_length=150, unique=True)
+    password = models.CharField(max_length=128)
+
+    class Meta:
+        verbose_name = "User Credentials"
+        verbose_name_plural = "User Credentials"
 
 
 class Role(models.Model):

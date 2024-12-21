@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'django_celery_beat',
+    'rest_framework_simplejwt',
     'rest_framework',
     'corsheaders',
     'main_app',
@@ -63,6 +64,16 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_WHITELIST = ['http://localhost:3000', "http://192.168.1.65:3000"]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
 
 ROOT_URLCONF = 'taxi_django.urls'
 

@@ -9,13 +9,46 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views import View
 from django.db.models import Q
-from rest_framework.decorators import action
+from rest_framework.status import HTTP_201_CREATED
 from rest_framework.views import APIView
+from django.contrib.auth.hashers import make_password
+from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import AccessToken
 
-from .models import *
+from .models import Users, UserCredentials
 from .serializers import *
 
 logger = logging.getLogger(__name__)
+
+
+class CreateUserView(APIView):
+    def post(self, request):
+        username = request.data.get('username')
+        password = make_password(request.data.get('password'))
+        name = request.data.get('name')
+        surname = request.data.get('surname')
+
+        user = Users.objects.create(name=name, surname=surname)
+        credentials = UserCredentials.objects.create(user=user, username=username, password=password)
+
+        return JsonResponse({'message': 'User created successfully'}, safe=False, status=HTTP_201_CREATED)
+
+
+class LoginView(APIView):
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+
+        try:
+            credentials = UserCredentials.objects.get(username=username)
+            if credentials.user.check_password(password):
+                access_token = AccessToken.for_user(credentials.user)
+                return Response({'token': str(access_token)}, status=200)
+            else:
+                return Response({'error': 'Invalid credentials'}, status=400)
+        except UserCredentials.DoesNotExist:
+            return Response({'error': 'User not found'}, status=404)
+
 
 class StockView(ListAPIView):
     serializer_class = StockSerializer
@@ -140,9 +173,7 @@ class DeleteMessageView(View):
         try:
             data = json.loads(request.body)
             chat_id = data.get('chat_id')
-            print(chat_id)
             user = Users.objects.filter(chat_id=chat_id).first()
-            print(user)
             if not user:
                 return JsonResponse({'error': 'User not found'}, status=404)
             role = Role.objects.filter(user_id=user.id).first()
