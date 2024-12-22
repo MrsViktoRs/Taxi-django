@@ -23,6 +23,7 @@ class Users(models.Model):
     fleetid = models.CharField(max_length=255, null=True, blank=True)
     card_number = models.CharField(max_length=300, null=True, blank=True)
     tariff = models.ForeignKey(Tariffs, on_delete=models.CASCADE, related_name='tariffs', null=True, blank=True)
+    date_swap_tariff = models.DateField(null=True, blank=True)
 
     class Meta:
         verbose_name = "User"
