@@ -371,7 +371,6 @@ class ActiveMessageView(APIView):
 class PartnerListAPIView(ListAPIView):
     queryset = Users.objects.filter(auth_status=False)
     serializer_class = UserSerializer
-    logger.warning(queryset)
     def get_queryset(self):
         qs = super().get_queryset()
         partner_users = qs.filter(roles__name='partner')
