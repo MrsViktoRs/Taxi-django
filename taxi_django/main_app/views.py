@@ -4,7 +4,7 @@ import json
 import os
 from rest_framework import generics, status
 from rest_framework.exceptions import ValidationError
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views import View
@@ -287,6 +287,33 @@ class UserRetrieveView(APIView):
             return JsonResponse({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
 
 
+class UserListView(ListAPIView):
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        queryset = Users.objects.filter(res_status=True, auth_status=True)
+        phone = self.request.query_params.get('phone', None)
+        name = self.request.query_params.get('name', None)
+        surname = self.request.query_params.get('surname', None)
+        patronymic = self.request.query_params.get('patronymic', None)
+
+        if phone:
+            queryset = queryset.filter(phone=phone)
+        if name:
+            queryset = queryset.filter(name=name)
+        if surname:
+            queryset = queryset.filter(surname=surname)
+        if patronymic:
+            queryset = queryset.filter(patronymic=patronymic)
+
+        return queryset
+
+
+class UserDetailView(RetrieveUpdateAPIView):
+    serializer_class = UserSerializer
+    queryset = Users.objects.filter(res_status=True, auth_status=True)
+
+
 class ActiveMessageView(APIView):
 
     def get(self, request):
@@ -337,3 +364,5 @@ class PartnerListAPIView(ListAPIView):
         qs = super().get_queryset()
         partner_users = qs.filter(roles__name='partner')
         return partner_users
+
+

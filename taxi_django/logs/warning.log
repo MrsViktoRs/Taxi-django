@@ -1,0 +1,293 @@
+WARNING 2024-12-10 18:46:20,435 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-10 18:46:20,436 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-11 15:32:19,394 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-11 15:32:19,394 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-11 15:33:06,148 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-11 15:33:06,148 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-11 15:33:07,257 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-11 15:33:07,257 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-11 16:29:39,306 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-11 16:29:39,306 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-11 16:31:31,470 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-11 16:31:31,471 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-11 16:32:05,668 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-11 16:32:05,669 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-11 17:12:52,531 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-11 17:12:52,531 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-11 17:26:57,051 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-11 17:26:57,051 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-11 17:28:27,969 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-11 17:28:27,970 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-12 13:21:57,102 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-12 13:21:57,103 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-12 13:27:25,299 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-12 13:27:25,299 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-12 14:01:11,277 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-12 14:01:11,278 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-12 14:29:16,219 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-12 14:29:16,219 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-12 18:26:22,302 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-12 18:26:22,302 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-14 13:37:40,797 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-14 13:37:40,798 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-14 13:41:50,452 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-14 13:41:50,452 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-14 13:43:28,928 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-14 13:43:28,929 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-14 17:30:05,230 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-14 17:30:05,230 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 12:05:31,905 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 12:05:31,906 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 12:06:27,774 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 12:06:27,774 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 12:09:04,837 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 12:09:04,838 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 12:10:11,694 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 12:10:11,694 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 12:47:12,315 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 12:47:12,316 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 12:58:45,423 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 12:58:45,423 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 13:00:29,396 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 13:00:29,396 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 13:16:04,592 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 13:16:04,593 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 13:19:50,306 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 13:19:50,306 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 13:33:22,748 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 13:33:22,748 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 14:08:04,293 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 14:08:04,293 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 14:08:56,264 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 14:08:56,264 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 14:14:14,305 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 14:14:14,305 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 14:16:16,885 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 14:16:16,886 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 14:16:34,470 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 14:16:34,470 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 14:26:36,649 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 14:26:36,649 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 14:27:18,404 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 14:27:18,404 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 14:30:09,924 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 14:30:09,924 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 15:13:26,360 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 15:13:26,360 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 15:14:22,035 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 15:14:22,036 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 19:13:15,685 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 19:13:15,685 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 19:14:19,407 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 19:14:19,407 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 19:18:07,672 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 19:18:07,672 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 19:19:04,815 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 19:19:04,816 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 19:21:28,797 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 19:21:28,797 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 19:21:34,069 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 19:21:34,069 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 19:21:42,639 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 19:21:42,639 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 19:34:27,408 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 19:34:27,408 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 19:34:47,115 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 19:34:47,115 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 19:35:35,237 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 19:35:35,237 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 19:35:44,437 log Not Found: /api/v1/getUser/79992324223
+WARNING 2024-12-15 19:35:44,438 basehttp "GET /api/v1/getUser/79992324223 HTTP/1.1" 404 28
+WARNING 2024-12-15 19:35:47,856 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 19:35:47,856 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 20:44:35,721 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 20:44:35,721 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 20:53:16,802 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 20:53:16,803 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 22:39:48,931 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 22:39:48,931 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 22:41:08,734 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 22:41:08,734 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 22:41:30,085 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 22:41:30,086 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 22:41:57,324 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 22:41:57,324 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 22:43:04,268 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 22:43:04,269 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 22:43:26,647 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 22:43:26,648 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 22:44:15,558 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 22:44:15,558 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 22:48:09,405 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 22:48:09,405 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 22:48:12,976 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 22:48:12,976 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 22:50:35,456 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 22:50:35,456 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 22:50:42,974 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 22:50:42,975 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 22:50:47,631 log Not Found: /api/v1/getUser/79992324223
+WARNING 2024-12-15 22:50:47,631 basehttp "GET /api/v1/getUser/79992324223 HTTP/1.1" 404 28
+WARNING 2024-12-15 22:50:51,083 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 22:50:51,083 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 22:53:23,053 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 22:53:23,053 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 22:54:27,946 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 22:54:27,947 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 22:55:46,020 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 22:55:46,020 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 22:57:08,400 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 22:57:08,400 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 22:57:36,687 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 22:57:36,687 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 23:06:41,287 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 23:06:41,288 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 23:35:58,378 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 23:35:58,379 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 23:36:21,150 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 23:36:21,151 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 23:43:44,494 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 23:43:44,494 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 23:44:29,611 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 23:44:29,611 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 23:45:05,332 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 23:45:05,332 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 23:46:35,628 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 23:46:35,628 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 23:46:41,311 log Not Found: /api/v1/getUser/79223244617
+WARNING 2024-12-15 23:46:41,311 basehttp "GET /api/v1/getUser/79223244617 HTTP/1.1" 404 28
+WARNING 2024-12-15 23:47:11,955 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 23:47:11,956 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 23:48:06,842 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 23:48:06,842 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-15 23:55:05,021 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-15 23:55:05,021 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-16 00:02:26,599 log Not Found: /api/v1/getUser/73333333333
+WARNING 2024-12-16 00:02:26,599 basehttp "GET /api/v1/getUser/73333333333 HTTP/1.1" 404 28
+WARNING 2024-12-16 10:19:11,317 log Bad Request: /api/v1/saveMessage/
+WARNING 2024-12-16 10:19:11,317 basehttp "POST /api/v1/saveMessage/ HTTP/1.1" 400 115
+ERROR 2024-12-16 10:20:06,915 log Internal Server Error: /api/v1/saveMessage/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/taxi_django/main_app/views.py", line 249, in post
+    return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/http/response.py", line 733, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/serializers/json.py", line 106, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type type is not JSON serializable
+ERROR 2024-12-16 10:20:06,917 basehttp "POST /api/v1/saveMessage/ HTTP/1.1" 500 127117
+ERROR 2024-12-16 10:21:32,100 log Internal Server Error: /api/v1/saveMessage/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/taxi_django/main_app/views.py", line 249, in post
+    return JsonResponse(serializer.data, status=status.HTTP_201_CREATED, safe=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/http/response.py", line 733, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/serializers/json.py", line 106, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type type is not JSON serializable
+ERROR 2024-12-16 10:21:32,103 basehttp "POST /api/v1/saveMessage/ HTTP/1.1" 500 127166
+ERROR 2024-12-16 10:24:26,568 log Internal Server Error: /api/v1/saveMessage/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/taxi_django/main_app/views.py", line 249, in post
+    return JsonResponse('True', status=status.HTTP_201_CREATED)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/http/response.py", line 726, in __init__
+    raise TypeError(
+TypeError: In order to allow non-dict objects to be serialized set the safe parameter to False.
+ERROR 2024-12-16 10:24:26,570 basehttp "POST /api/v1/saveMessage/ HTTP/1.1" 500 104810
+WARNING 2024-12-16 10:29:41,965 log Bad Request: /api/v1/saveMessage/
+WARNING 2024-12-16 10:29:41,966 basehttp "POST /api/v1/saveMessage/ HTTP/1.1" 400 324

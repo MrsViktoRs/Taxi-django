@@ -1,0 +1,343 @@
+ERROR 2024-12-06 14:58:37,869 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 14:58:37,870 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:03:46,305 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:03:46,306 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:04:09,337 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:04:09,338 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:05:08,858 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:05:08,859 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:06:58,114 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:06:58,114 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:12:21,793 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:12:21,793 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:24:26,353 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:24:26,354 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:26:17,930 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:26:17,930 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:28:07,227 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:28:07,228 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:28:23,504 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:28:23,505 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:29:09,487 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:29:09,488 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:30:19,165 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:30:19,166 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:33:58,126 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:33:58,127 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:36:10,389 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:36:10,390 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:36:50,285 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:36:50,286 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:45:05,740 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:45:05,741 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:46:29,771 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:46:29,772 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:48:58,579 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:48:58,580 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:50:37,148 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:50:37,148 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-06 15:51:39,137 log Internal Server Error: /api/v1/accept_message/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view main_app.views.view didn't return an HttpResponse object. It returned None instead.
+ERROR 2024-12-06 15:51:39,138 basehttp "POST /api/v1/accept_message/ HTTP/1.1" 500 71988
+ERROR 2024-12-16 10:20:06,915 log Internal Server Error: /api/v1/saveMessage/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/taxi_django/main_app/views.py", line 249, in post
+    return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/http/response.py", line 733, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/serializers/json.py", line 106, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type type is not JSON serializable
+ERROR 2024-12-16 10:20:06,917 basehttp "POST /api/v1/saveMessage/ HTTP/1.1" 500 127117
+ERROR 2024-12-16 10:21:32,100 log Internal Server Error: /api/v1/saveMessage/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/taxi_django/main_app/views.py", line 249, in post
+    return JsonResponse(serializer.data, status=status.HTTP_201_CREATED, safe=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/http/response.py", line 733, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/serializers/json.py", line 106, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type type is not JSON serializable
+ERROR 2024-12-16 10:21:32,103 basehttp "POST /api/v1/saveMessage/ HTTP/1.1" 500 127166
+ERROR 2024-12-16 10:24:26,568 log Internal Server Error: /api/v1/saveMessage/
+Traceback (most recent call last):
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/taxi_django/main_app/views.py", line 249, in post
+    return JsonResponse('True', status=status.HTTP_201_CREATED)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/viktor/PycharmProjects/Taxi-django/.venv/lib/python3.12/site-packages/django/http/response.py", line 726, in __init__
+    raise TypeError(
+TypeError: In order to allow non-dict objects to be serialized set the safe parameter to False.
+ERROR 2024-12-16 10:24:26,570 basehttp "POST /api/v1/saveMessage/ HTTP/1.1" 500 104810
