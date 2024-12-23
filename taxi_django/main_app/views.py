@@ -24,7 +24,6 @@ logger = logging.getLogger(__name__)
 class CreateAdminView(APIView):
     def post(self, request):
         username = request.data.get('username')
-        print(username)
         password = make_password(request.data.get('password'))
         try:
             UserCredentials.objects.create(username=username, password=password)
@@ -37,7 +36,6 @@ class CreateAdminView(APIView):
 class LoginView(APIView):
     def post(self, request):
         data = request.data['regData']
-        print(data)
         try:
             credentials = UserCredentials.objects.get(username=data['username'])
             if credentials.check_password(data['password']):
@@ -376,6 +374,6 @@ class PartnerListAPIView(ListAPIView):
     def get_queryset(self):
         qs = super().get_queryset()
         partner_users = qs.filter(roles__name='partner')
-        return partner_users
+        return JsonResponse(partner_users)
 
 
