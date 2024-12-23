@@ -171,9 +171,6 @@ class DeleteMessageView(View):
         try:
             data = json.loads(request.body)
             chat_id = data['chat_id']
-            name = data['name']
-            surname = data['surname']
-            patronymic = data['patronymic']
             user = Users.objects.filter(chat_id=chat_id).first()
             if not user:
                 return JsonResponse({'error': 'User not found'}, status=404)
@@ -182,9 +179,6 @@ class DeleteMessageView(View):
                 logger.warning(f'request: /accept_message/ \nstatus: role is {role}')
                 return JsonResponse({"error": "Role not found"}, status=403, safe=False)
             message = Messages.objects.filter(user_id=user.id).all()
-            user.name = name
-            user.surname = surname
-            user.patronymic = patronymic
             user.auth_status = True
             user.save()
             if len(message) != 0:
@@ -204,6 +198,10 @@ class DeleteMessageView(View):
                 logger.warning('Сообщений для удаления нет')
             url_accep_mess = f'https://api.telegram.org/bot{os.getenv("BOT_TOKEN")}/sendMessage'
             if role.name == 'driver':
+                user.name = data['name']
+                user.surname = data['surname']
+                user.patronymic = data['patronymic']
+                user.save()
                 text = ("А ты смотрел видео «Экспансии» в соц.сетях❓❗️\n"
                         "Наш канал в [Telegram](t.me/ExpansiyaTaxi)💬 где мы регулярно публикуем новости из мира автомобилей.\n\n"
                         "Наши каналы на \n"
@@ -269,7 +267,6 @@ class DeleteMessageView(View):
 
         except Exception as err:
             logger.error(err)
-            print(err)
             return JsonResponse({'error': 'exception'}, status=405)
 
 
