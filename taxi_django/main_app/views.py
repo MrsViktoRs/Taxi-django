@@ -171,7 +171,10 @@ class DeleteMessageView(View):
     def post(self, request, *args, **kwargs):
         try:
             data = json.loads(request.body)
-            chat_id = data.get('chat_id')
+            chat_id = data['chat_id']
+            name = data['name']
+            surname = data['surname']
+            patronymic = data['patronymic']
             user = Users.objects.filter(chat_id=chat_id).first()
             if not user:
                 return JsonResponse({'error': 'User not found'}, status=404)
@@ -180,6 +183,9 @@ class DeleteMessageView(View):
                 logger.warning(f'request: /accept_message/ \nstatus: role is {role}')
                 return JsonResponse({"error": "Role not found"}, status=403, safe=False)
             message = Messages.objects.filter(user_id=user.id).all()
+            user.name = name
+            user.surname = surname
+            user.patronymic = patronymic
             user.auth_status = True
             user.save()
             if len(message) != 0:
@@ -199,13 +205,19 @@ class DeleteMessageView(View):
                 logger.warning('Сообщений для удаления нет')
             url_accep_mess = f'https://api.telegram.org/bot{os.getenv("BOT_TOKEN")}/sendMessage'
             if role.name == 'driver':
-                text = ('Таксопарк “Экспансия” представлен в других соц.сетях.\n'
-                        'Наш канал в Telegram{}💬 где мы регулярно публикуем новости из мира автомобилей.\n'
-                        'Наш канал на YouTube{}📹 и VkVideo{} 🎞 где мы публикуем развлекательный и информативный контент.\n'
-                        'Будь в теме с “Экспансией”!')
+                text = ("А ты смотрел видео «Экспансии» в соц.сетях❓❗️\n"
+                        "Наш канал в [Telegram](t.me/ExpansiyaTaxi)💬 где мы регулярно публикуем новости из мира автомобилей.\n\n"
+                        "Наши каналы на \n"
+                        "📹 [YouTube](youtube.com/@ExpanciaTaxi)\n"
+                        "🌐 [VkVideo](vk.com/expansiyataxi)\n"
+                        "📷 [Instagram](instagram.com/expansion_taxi)\n"
+                        "🕺 [Tik-Tok](tiktok.com/@expansion_taxi)\n"
+                        "где мы публикуем развлекательный и информативный контент.\n"
+                        "Будь в теме с «Экспансией» !")
                 payload_accep_mess = {
                     "chat_id": chat_id,
                     "text": text,
+                    'parse_mode': 'Markdown',
                     "reply_markup": {
                         "inline_keyboard":
                             [
@@ -219,27 +231,26 @@ class DeleteMessageView(View):
                 response_accep_mess = requests.post(url_accep_mess, json=payload_accep_mess)
             elif role.name == 'partner':
                 text = (
-                    'Привет, {}. Рады видеть в нашей команде✋!'
-                    'В разделе “Информация” ты можешь найти🔍:'
-                    'Подробную инструкцию по использованию телеграм бота🤖, обязательно ознакомься перед началом использования🤓, также мы собрали самую важную информацию и тонкости по работе в такси. Все это ты можешь найти нажав кнопку “Начало работы”▶️.'
-                    'А если хочешь зарабатывать больше - ознакомься с проводимыми акциями нажав кнопку  “Бонусы и Акции”💵!'
-                    'При успешной регистрации партнера и подтверждении от диспетчера'
-                    'Привет, {Name}. Рады видеть в нашей команде!'
-                    'В разделе “Информация” ты можешь найти:'
-                    'Ответы на большинство вопросов есть в разделе по кнопке “Часто задаваемые вопросы”❓.'
-                    'А если хочешь зарабатывать больше - ознакомься с проводимыми акциями нажав кнопку  “Бонусы и Акции”💵!'
-                    'Если у тебя останутся  вопросы, ты найдешь как с нами связаться в разделе "Связь с нами" ➡️ “Связь с диспетчером”☎️ .'
+                    "Добро пожаловать в таксопарк Экспансия✋.\n"
+                    "С нами не обязательно быть водителем🚘 чтобы зарабатывать!\n"
+                    "Мы делимся своим доходом💰 с вами, за каждого друга, который работает в нашем парке и выполняет заказы, вы будете получать 50% от комиссии парка.\n"
+                    "Подробные условия:\n"
+                    "Получай по 2₽💰 с каждого заказа своего друга или👬 1₽ если он самозанятый.\n"
+                    "Начисления будут действовать в течении 3х месяцев с момента первого заказа.\n"
+                    "Начисления приходят один раз в месяц в период с 1-5 число следующего месяца(за исключением выходных).\n"
+                    "Узнать подробную статистику по своему профилю ты можешь по кнопке “Статистика”👇)\n"
                 )
                 payload_accep_mess = {
                     "chat_id": chat_id,
                     "text": text,
+                    'parse_mode': 'Markdown',
                     "reply_markup": {
                         "inline_keyboard":
                             [
                                 [{"text": "Профиль партнера", "callback_data": "profile_parther"}],
                                 [{"text": "Статистика по акциям", "callback_data": "stats_action"}],
-                                [{"text": "Информация о парке", "callback_data": "about_taxi_park"}],
-                                [{"text": "Связь с нами", "callback_data": "contact_us"}],
+                                [{"text": "Информация о парке", "callback_data": "info_park"}],
+                                [{"text": "Связь с нами", "callback_data": "call_for"}],
                             ]
                     }
                 }
@@ -247,7 +258,7 @@ class DeleteMessageView(View):
             else:
                 logger.warning(f'Нет такой роли\nUser: \nid: {user.id} \nchat_id:{user.chat_id} \nphone: {user.phone}')
                 return JsonResponse({'status': 'role is not found'}, status=403)
-            if response_accep_mess.status_code != 200:
+            if response_accep_mess.status_code == 200:
                 res_accep_mess_json = response_accep_mess.json()
                 Messages.objects.create(
                     user_id=user.id,
@@ -255,10 +266,12 @@ class DeleteMessageView(View):
                 )
                 return JsonResponse({'status': 'Message deleted successfully and send new message!'}, status=200)
             else:
-                return JsonResponse({'error': 'New message not send.'}, status=response_accep_mess.status_code)
+                return JsonResponse({'error': 'New message not send.'}, status=404)
 
         except Exception as err:
             logger.error(err)
+            print(err)
+            return JsonResponse({'error': 'exception'}, status=405)
 
 
 class UserRetrieveView(APIView):
