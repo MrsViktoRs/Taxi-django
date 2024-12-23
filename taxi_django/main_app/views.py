@@ -374,6 +374,6 @@ class PartnerListAPIView(ListAPIView):
     def get_queryset(self):
         qs = super().get_queryset()
         partner_users = qs.filter(roles__name='partner')
-        return JsonResponse(partner_users, safe=False)
+        return partner_users
 
 
