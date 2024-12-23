@@ -27,7 +27,8 @@ class CreateAdminView(APIView):
         password = make_password(request.data.get('password'))
         try:
             UserCredentials.objects.create(username=username, password=password)
-        except Exception:
+        except Exception as err:
+            logger.error(err)
             return JsonResponse(f'username already exists', safe=False, status=HTTP_409_CONFLICT)
 
         return JsonResponse(f"Create amdin", safe=False, status=HTTP_201_CREATED)
