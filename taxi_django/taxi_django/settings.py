@@ -46,9 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'django_celery_beat',
+    'corsheaders',
     'rest_framework_simplejwt',
     'rest_framework',
-    'corsheaders',
     'main_app',
 ]
 
@@ -63,7 +63,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_WHITELIST = ['http://localhost:3000', "http://192.168.1.65:3000"]
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000', os.getenv('ALLOWED_HOST_FRONT')]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -176,14 +176,6 @@ REDIS_PORT = '6379'
 BROKER_URL = f'redis://{os.getenv("LOGIN")}:{os.getenv("PASSWORD")}@{REDIS_HOST}:{REDIS_PORT}/2'
 BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
 CELERY_RESULT_BACKEND = f'redis://{os.getenv("LOGIN")}:{os.getenv("PASSWORD")}@{REDIS_HOST}:{REDIS_PORT}/3'
-
-# CELERY_BROKER_URL = 'redis://localhost:6379/2'
-# REDIS_HOST = 'localhost'
-# REDIS_PORT = '6379'
-# REDIS_PASSWORD='default:123467'
-# BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/2'
-# BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
-# CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/3'
 
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
