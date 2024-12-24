@@ -70,16 +70,19 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    os.getenv('ALLOWED_HOST_FRONT')
+    os.getenv('ALLOWED_HOSTS'),
+    os.getenv('ALLOWED_HOST_2'),
+    os.getenv('ALLOWED_HOST_FRONT'),
+    os.getenv('ALLOWED_HOST_FRONT_2'),
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
     os.getenv('ALLOWED_HOSTS'),
+    os.getenv('ALLOWED_HOST_2'),
     os.getenv('ALLOWED_HOST_FRONT'),
-    'http://127.0.0.1:3000'
+    os.getenv('ALLOWED_HOST_FRONT_2'),
 ]
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
