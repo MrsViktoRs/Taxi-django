@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from corsheaders.defaults import default_headers
 from datetime import timedelta
 
 load_dotenv()
@@ -33,7 +34,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.getenv('DEBUG'))
 
-ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS'), os.getenv('ALLOWED_HOST_FRONT')]
+ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS'), os.getenv('ALLOWED_HOST_FRONT'), '127.0.0.1']
 
 
 # Application definition
@@ -45,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django_celery_beat',
+    'django_celery_beat',
     'corsheaders',
     'rest_framework_simplejwt',
     'rest_framework',
@@ -63,7 +64,26 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_WHITELIST = ['http://localhost:3000', os.getenv('ALLOWED_HOST_FRONT')]
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+    os.getenv('ALLOWED_HOSTS'),
+    os.getenv('ALLOWED_HOST_FRONT'),
+    'http://127.0.0.1:3000'
+]
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'last_checked',  # Добавляем нестандартный заголовок
+]
+
+# Если необходимо разрешить использование методов, укажите:
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS",
+]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

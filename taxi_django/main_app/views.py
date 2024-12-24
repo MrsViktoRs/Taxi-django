@@ -1,4 +1,6 @@
 import logging
+import datetime
+
 import requests
 import json
 import os
@@ -14,6 +16,7 @@ from rest_framework.views import APIView
 from django.contrib.auth.hashers import make_password
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import AccessToken
+from django.utils import timezone
 
 from .models import Users, UserCredentials
 from .serializers import *
@@ -93,7 +96,17 @@ class RefKeyRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 @csrf_exempt
 def get_messages(request):
     if request.method == 'GET':
-        messages = Appeals.objects.filter(status=True).order_by('-dt')
+        # Получаем метку времени последнего запроса (если она есть)
+        last_checked = request.GET.get('last_checked', None)
+
+        # Если метка времени есть, фильтруем сообщения, созданные позже
+        if last_checked:
+            last_checked_time = timezone.make_aware(datetime.datetime.fromisoformat(last_checked))
+            messages = Appeals.objects.filter(status=True, dt__gt=last_checked_time).order_by('-dt')
+        else:
+            # Если метки времени нет, возвращаем все новые сообщения
+            messages = Appeals.objects.filter(status=True).order_by('-dt')
+
         serializer = AppealsSerializer(messages, many=True)
         return JsonResponse(serializer.data, safe=False)
 
@@ -127,15 +140,20 @@ class AppealsView(generics.UpdateAPIView):
 
             return JsonResponse({"error": "Appeal not found."}, status=status.HTTP_404_NOT_FOUND)
 
+
 @csrf_exempt
 def get_user_status(request):
     if request.method == 'GET':
-        try:
-            user = Users.objects.filter(res_status=True, auth_status=False)
-            serializer = UserSerializer(user, many=True)
-            return JsonResponse(serializer.data, safe=False)
-        except Users.DoesNotExist:
-            return JsonResponse({'status': 'not_found'}, status=404)
+        last_checked = request.GET.get('last_checked', None)
+        # Если есть метка времени, фильтруем пользователей, созданных позже
+        if last_checked:
+            last_checked_time = timezone.make_aware(datetime.datetime.fromisoformat(last_checked))
+            users = Users.objects.filter(res_status=True, auth_status=False, created_at__gt=last_checked_time)
+        else:
+            users = Users.objects.filter(res_status=True, auth_status=False)
+
+        serializer = UserSerializer(users, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
 
 class SendMessageView(View):
@@ -246,8 +264,7 @@ class DeleteMessageView(View):
                             [
                                 [{"text": "Профиль партнера", "callback_data": "profile_parther"}],
                                 [{"text": "Статистика по акциям", "callback_data": "stats_action"}],
-                                [{"text": "Информация о парке", "callback_data": "info_park"}],
-                                [{"text": "Связь с нами", "callback_data": "call_for"}],
+                                [{"text": "Информация о парке", "callback_data": "info_park"}, {"text": "Связь с нами", "callback_data": "call_for"}],
                             ]
                     }
                 }

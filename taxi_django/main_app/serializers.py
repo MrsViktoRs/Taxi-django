@@ -29,9 +29,16 @@ class RefKeySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
+    role_name = serializers.SerializerMethodField()
+
     class Meta:
         model = Users
         fields = '__all__'
+        extra_fields = ['role_name']
+
+    def get_role_name(self, obj):
+        role = obj.roles.first()
+        return role.name if role else None
 
 class RoleSerializer(serializers.ModelSerializer):
     class Meta:
