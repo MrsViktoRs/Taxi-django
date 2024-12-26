@@ -17,6 +17,7 @@ from django.contrib.auth.hashers import make_password
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import AccessToken
 from django.utils import timezone
+from django.shortcuts import get_object_or_404
 
 from .models import Users, UserCredentials
 from .serializers import *
@@ -40,6 +41,7 @@ class CreateAdminView(APIView):
 class LoginView(APIView):
     def post(self, request):
         data = request.data['regData']
+        print(data)
         try:
             credentials = UserCredentials.objects.get(username=data['username'])
             if credentials.check_password(data['password']):
@@ -219,6 +221,8 @@ class DeleteMessageView(View):
                 user.name = data['name']
                 user.surname = data['surname']
                 user.patronymic = data['patronymic']
+                fixed_tariff = Tariffs.objects.get(name="Фиксированный(СМЗ)")
+                user.tariff = fixed_tariff
                 user.save()
                 text = ("А ты смотрел видео «Экспансии» в соц.сетях❓❗️\n"
                         "Наш канал в [Telegram](t.me/ExpansiyaTaxi)💬 где мы регулярно публикуем новости из мира автомобилей.\n\n"
@@ -245,6 +249,12 @@ class DeleteMessageView(View):
                 }
                 response_accep_mess = requests.post(url_accep_mess, json=payload_accep_mess)
             elif role.name == 'partner':
+                user.name = data['name']
+                user.surname = data['surname']
+                user.patronymic = data['patronymic']
+                user.phone = data['phone']
+                user.card_number = data['card_number']
+                user.save()
                 text = (
                     "Добро пожаловать в таксопарк Экспансия✋.\n"
                     "С нами не обязательно быть водителем🚘 чтобы зарабатывать!\n"
@@ -334,6 +344,13 @@ class UserListView(ListAPIView):
 
         return queryset
 
+
+class UserDeleteView(APIView):
+    def delete(self, request, user_id):
+        user = get_object_or_404(Users, id=user_id)
+        user.delete()
+
+        return Response({"message": "User deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 
 class UserDetailView(RetrieveUpdateAPIView):
     serializer_class = UserSerializer
