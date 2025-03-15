@@ -28,7 +28,25 @@ class RefKeySerializer(serializers.ModelSerializer):
         model = RefKey
         fields = '__all__'
 
-class UserSerializer(serializers.ModelSerializer):
+class DriverLicensesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DriverLicenses
+        fields = '__all__'
+
+class CarsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cars
+        fields = '__all__'
+
+class UsersSerializer(serializers.ModelSerializer):
+    driver_license = DriverLicensesSerializer(read_only=True)  # Возвращает объект при `GET`
+    driver_license_id = serializers.PrimaryKeyRelatedField(
+        queryset=DriverLicenses.objects.all(), source='driver_license', write_only=True
+    )
+    car = CarsSerializer(read_only=True)
+    car_id = serializers.PrimaryKeyRelatedField(
+        queryset=Cars.objects.all(), source='car', write_only=True
+    )
     role_name = serializers.SerializerMethodField()
 
     class Meta:
@@ -40,6 +58,11 @@ class UserSerializer(serializers.ModelSerializer):
         role = obj.roles.first()
         return role.name if role else None
 
+class UsersCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Users
+        fields = '__all__'
+
 class RoleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Role
@@ -48,7 +71,7 @@ class RoleSerializer(serializers.ModelSerializer):
 
 class AppealsSerializer(serializers.ModelSerializer):
     formatted_dt = serializers.SerializerMethodField('get_formatted_dt')
-    user = UserSerializer()
+    user = UsersSerializer()
 
     def get_formatted_dt(self, obj):
         date = obj.dt.date()

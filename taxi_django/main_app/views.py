@@ -4,7 +4,7 @@ import datetime
 import requests
 import json
 import os
-from rest_framework import generics, status
+from rest_framework import generics, status, viewsets
 from rest_framework.exceptions import ValidationError
 from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView
 from django.http import JsonResponse
@@ -154,7 +154,7 @@ def get_user_status(request):
         else:
             users = Users.objects.filter(res_status=True, auth_status=False)
 
-        serializer = UserSerializer(users, many=True)
+        serializer = UsersSerializer(users, many=True)
         return JsonResponse(serializer.data, safe=False)
 
 
@@ -301,7 +301,7 @@ class UserRetrieveView(APIView):
     def get(self, request, phone):
         try:
             user = Users.objects.get(phone=phone)
-            serializer = UserSerializer(user)
+            serializer = UsersSerializer(user)
 
             return JsonResponse(serializer.data, status=status.HTTP_200_OK)
 
@@ -312,7 +312,7 @@ class UserRetrieveView(APIView):
         try:
             user = Users.objects.get(phone=phone)
             data = request.data
-            serializer = UserSerializer(instance=user, data=data, partial=True)
+            serializer = UsersSerializer(instance=user, data=data, partial=True)
             if serializer.is_valid():
                 serializer.save()
                 return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
@@ -324,10 +324,10 @@ class UserRetrieveView(APIView):
 
 
 class UserListView(ListAPIView):
-    serializer_class = UserSerializer
+    serializer_class = UsersSerializer
 
     def get_queryset(self):
-        queryset = Users.objects.filter(res_status=True, auth_status=True)
+        queryset = Users.objects.filter(res_status=True, auth_status=False)
         phone = self.request.query_params.get('phone', None)
         name = self.request.query_params.get('name', None)
         surname = self.request.query_params.get('surname', None)
@@ -353,9 +353,37 @@ class UserDeleteView(APIView):
         return Response({"message": "User deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 
 class UserDetailView(RetrieveUpdateAPIView):
-    serializer_class = UserSerializer
-    queryset = Users.objects.filter(res_status=True, auth_status=True)
+    serializer_class = UsersSerializer
+    lookup_field = "chat_id"
+    queryset = Users.objects.all()
 
+class DriverLicenseCreateAPIView(APIView):
+
+    def post(self, request):
+        serializer = DriverLicensesSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class DriverLicenseDetailView(RetrieveUpdateAPIView):
+    serializer_class = DriverLicensesSerializer
+    lookup_field = "number"
+    queryset = DriverLicenses.objects.all()
+
+class CarCreateAPIView(APIView):
+
+    def post(self, request):
+        serializer = CarsSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class CarDetailView(RetrieveUpdateAPIView):
+    serializer_class = CarsSerializer
+    lookup_field = "vin_number"
+    queryset = Cars.objects.all()
 
 class ActiveMessageView(APIView):
 
@@ -401,7 +429,7 @@ class ActiveMessageView(APIView):
 
 class PartnerListAPIView(ListAPIView):
     queryset = Users.objects.filter(auth_status=False)
-    serializer_class = UserSerializer
+    serializer_class = UsersSerializer
     def get_queryset(self):
         qs = super().get_queryset()
         partner_users = qs.filter(roles__name='partner')

@@ -9,6 +9,39 @@ class Tariffs(models.Model):
     is_enabled = models.BooleanField(null=True, blank=True)
 
 
+class DriverLicenses(models.Model):
+    country = models.CharField(max_length=10, null=True, blank=True) # страна
+    expiry_date = models.CharField(max_length=10, null=True,
+                                   blank=True) #храним в str т.к. передаём в флит именно в таком формате
+    issue_date = models.CharField(max_length=10, null=True,
+                                   blank=True)  # храним в str т.к. передаём в флит именно в таком формате
+    number = models.BigIntegerField(blank=True, null=True) # номер в\у
+
+    class Meta:
+        verbose_name = 'driver_license'
+        verbose_name_plural = 'driver_licenses'
+
+
+class Cars(models.Model):
+    model = models.CharField(max_length=255, null=True, blank=True)
+    label = models.CharField(max_length=255, null=True, blank=True)
+    gos_number = models.CharField(max_length=255, null=True, blank=True)
+    year =models.CharField(max_length=4, null=True, blank=True)
+    vin_number = models.CharField(max_length=255, null=True, blank=True)
+    color = models.CharField(max_length=30, null=True, blank=True)
+    transmission = models.CharField(max_length=50, null=True, blank=True)
+    flue_type = models.CharField(max_length=50, null=True, blank=True)
+    license = models.CharField(max_length=30, blank=True, null=True)
+    fleetid = models.CharField(max_length=255, null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Car"
+        verbose_name_plural = "Cars"
+
+    def __str__(self):
+        return f"{self.model} {self.gos_number}"
+
+
 class Users(models.Model):
     chat_id = models.BigIntegerField()
     name = models.CharField(max_length=255, null=True)
@@ -24,7 +57,12 @@ class Users(models.Model):
     card_number = models.CharField(max_length=300, null=True, blank=True)
     tariff = models.ForeignKey(Tariffs, on_delete=models.CASCADE, related_name='tariffs', null=True, blank=True)
     date_swap_tariff = models.DateField(null=True, blank=True)
+    date_register = models.DateTimeField(null=True, blank=True)
     is_agree = models.BooleanField(null=True, blank=True)
+    city = models.CharField(max_length=255, null=True, blank=True)
+    driver_license = models.ForeignKey(DriverLicenses, on_delete=models.CASCADE, related_name='driver_licenses',
+                                       null=True, blank=True)
+    car = models.ForeignKey(Cars, on_delete=models.CASCADE, related_name='car', null=True, blank=True)
 
     class Meta:
         verbose_name = "User"
@@ -56,20 +94,6 @@ class Role(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Cars(models.Model):
-    model = models.CharField(max_length=255, null=True, blank=True)
-    label = models.CharField(max_length=255, null=True, blank=True)
-    gos_number = models.CharField(max_length=255, null=True, blank=True)
-    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='cars', null=True, blank=True)
-
-    class Meta:
-        verbose_name = "Car"
-        verbose_name_plural = "Cars"
-
-    def __str__(self):
-        return f"{self.model} {self.gos_number}"
 
 
 class WorkingShifts(models.Model):
