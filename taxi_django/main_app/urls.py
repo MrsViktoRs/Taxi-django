@@ -27,5 +27,6 @@ urlpatterns = [
     path('driver-licenses/', DriverLicenseCreateAPIView.as_view(), name='create-driver-license'),
     path('driver-licenses/<int:number>', DriverLicenseDetailView.as_view(), name='driver-license-detail'),
     path('cars/', CarCreateAPIView.as_view(), name='car-create'),
-    path('cars/<int:vin_number>/', CarDetailView.as_view(), name='car-detail')
+    path('cars/<int:vin_number>/', CarDetailView.as_view(), name='car-detail'),
+    path('cars/by-id/<int:chat_id>/', CarDetailByIdView.as_view(), name='car-detail-by-id'),
 ]

@@ -33,20 +33,32 @@ class DriverLicensesSerializer(serializers.ModelSerializer):
         model = DriverLicenses
         fields = '__all__'
 
+
 class CarsSerializer(serializers.ModelSerializer):
+    chat_id = serializers.IntegerField(write_only=True)
+
     class Meta:
         model = Cars
         fields = '__all__'
+        extra_kwargs = {'user': {'read_only': True}}
+
+    def create(self, validated_data):
+        chat_id = validated_data.pop('chat_id')
+        user = Users.objects.filter(chat_id=chat_id).first()
+        if not user:
+            raise serializers.ValidationError({'chat_id': 'Пользователь с таким chat_id не найден'})
+        validated_data['user'] = user
+        return super().create(validated_data)
 
 class UsersSerializer(serializers.ModelSerializer):
     driver_license = DriverLicensesSerializer(read_only=True)  # Возвращает объект при `GET`
     driver_license_id = serializers.PrimaryKeyRelatedField(
         queryset=DriverLicenses.objects.all(), source='driver_license', write_only=True
     )
-    car = CarsSerializer(read_only=True)
-    car_id = serializers.PrimaryKeyRelatedField(
-        queryset=Cars.objects.all(), source='car', write_only=True
-    )
+    # car = CarsSerializer(read_only=True)
+    # car_id = serializers.PrimaryKeyRelatedField(
+    #     queryset=Cars.objects.all(), source='car', write_only=True
+    # )
     role_name = serializers.SerializerMethodField()
 
     class Meta:

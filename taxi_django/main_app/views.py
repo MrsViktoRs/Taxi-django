@@ -6,7 +6,7 @@ import json
 import os
 from rest_framework import generics, status, viewsets
 from rest_framework.exceptions import ValidationError
-from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView, RetrieveAPIView
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views import View
@@ -371,8 +371,8 @@ class DriverLicenseDetailView(RetrieveUpdateAPIView):
     lookup_field = "number"
     queryset = DriverLicenses.objects.all()
 
-class CarCreateAPIView(APIView):
 
+class CarCreateAPIView(APIView):
     def post(self, request):
         serializer = CarsSerializer(data=request.data)
         if serializer.is_valid():
@@ -384,6 +384,15 @@ class CarDetailView(RetrieveUpdateAPIView):
     serializer_class = CarsSerializer
     lookup_field = "vin_number"
     queryset = Cars.objects.all()
+
+class CarDetailByIdView(RetrieveAPIView):
+    serializer_class = CarsSerializer
+    queryset = Cars.objects.all()
+
+    def get_object(self):
+        chat_id = self.kwargs.get("chat_id")
+        user = get_object_or_404(Users, chat_id=chat_id)
+        return get_object_or_404(Cars, user_id=user.id)
 
 class ActiveMessageView(APIView):
 
