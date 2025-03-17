@@ -22,26 +22,6 @@ class DriverLicenses(models.Model):
         verbose_name_plural = 'driver_licenses'
 
 
-class Cars(models.Model):
-    model = models.CharField(max_length=255, null=True, blank=True)
-    label = models.CharField(max_length=255, null=True, blank=True)
-    gos_number = models.CharField(max_length=255, null=True, blank=True)
-    year =models.CharField(max_length=4, null=True, blank=True)
-    vin_number = models.CharField(max_length=255, null=True, blank=True)
-    color = models.CharField(max_length=30, null=True, blank=True)
-    transmission = models.CharField(max_length=50, null=True, blank=True)
-    flue_type = models.CharField(max_length=50, null=True, blank=True)
-    license = models.CharField(max_length=30, blank=True, null=True)
-    fleetid = models.CharField(max_length=255, null=True, blank=True)
-
-    class Meta:
-        verbose_name = "Car"
-        verbose_name_plural = "Cars"
-
-    def __str__(self):
-        return f"{self.model} {self.gos_number}"
-
-
 class Users(models.Model):
     chat_id = models.BigIntegerField()
     name = models.CharField(max_length=255, null=True)
@@ -62,7 +42,6 @@ class Users(models.Model):
     city = models.CharField(max_length=255, null=True, blank=True)
     driver_license = models.ForeignKey(DriverLicenses, on_delete=models.CASCADE, related_name='driver_licenses',
                                        null=True, blank=True)
-    car = models.ForeignKey(Cars, on_delete=models.CASCADE, related_name='car', null=True, blank=True)
 
     class Meta:
         verbose_name = "User"
@@ -70,6 +49,26 @@ class Users(models.Model):
 
     def __str__(self):
         return f"{self.name} {self.surname}"
+
+class Cars(models.Model):
+    model = models.CharField(max_length=255, null=True, blank=True)
+    label = models.CharField(max_length=255, null=True, blank=True)
+    gos_number = models.CharField(max_length=255, null=True, blank=True)
+    year =models.CharField(max_length=4, null=True, blank=True)
+    vin_number = models.CharField(max_length=255, null=True, blank=True)
+    color = models.CharField(max_length=30, null=True, blank=True)
+    transmission = models.CharField(max_length=50, null=True, blank=True)
+    flue_type = models.CharField(max_length=50, null=True, blank=True)
+    license = models.CharField(max_length=30, blank=True, null=True)
+    fleetid = models.CharField(max_length=255, null=True, blank=True)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='users', blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Car"
+        verbose_name_plural = "Cars"
+
+    def __str__(self):
+        return f"{self.model} {self.gos_number}"
 
 
 class UserCredentials(models.Model):
