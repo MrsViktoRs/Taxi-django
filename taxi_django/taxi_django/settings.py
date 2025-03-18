@@ -74,13 +74,21 @@ CORS_ALLOWED_ORIGINS = [
     os.getenv('ALLOWED_HOST_FRONT'),
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ORIGIN_WHITELIST = [
     os.getenv('ALLOWED_HOSTS'),
     os.getenv('ALLOWED_HOST_2'),
     os.getenv('ALLOWED_HOST_FRONT'),
     os.getenv('ALLOWED_HOST_FRONT_2'),
+    "https://expansiya-taxi.ru",
+    "http://expansiya-taxi.ru",
+    "https://api.expansiya-taxi.ru",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://expansiya-taxi.ru",
+    "https://api.expansiya-taxi.ru",
 ]
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
