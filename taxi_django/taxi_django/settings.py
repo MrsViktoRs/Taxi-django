@@ -69,18 +69,18 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORS_ALLOW_ALL_ORIGINS = os.getenv('CORS_ALLOW_ALL_ORIGINS'),
+
 CORS_ALLOWED_ORIGINS = [
-    os.getenv('ALLOWED_HOSTS'),
-    os.getenv('ALLOWED_HOST_FRONT'),
+    os.getenv('ALLOWED_HOSTS', 'https://expansiya-taxi.ru'),
+    os.getenv('ALLOWED_HOST_FRONT', 'https://api.expansiya-taxi.ru'),
 ]
 
-# CORS_ALLOW_ALL_ORIGINS = True
-
 CORS_ORIGIN_WHITELIST = [
-    os.getenv('ALLOWED_HOSTS'),
-    os.getenv('ALLOWED_HOST_2'),
-    os.getenv('ALLOWED_HOST_FRONT'),
-    os.getenv('ALLOWED_HOST_FRONT_2'),
+    os.getenv('ALLOWED_HOSTS', 'https://expansiya-taxi.ru'),
+    os.getenv('ALLOWED_HOST_2', 'https://api.expansiya-taxi.ru'),
+    os.getenv('ALLOWED_HOST_FRONT', 'https://expansiya-taxi.ru'),
+    os.getenv('ALLOWED_HOST_FRONT_2', 'https://api.expansiya-taxi.ru'),
     "https://expansiya-taxi.ru",
     "http://expansiya-taxi.ru",
     "https://api.expansiya-taxi.ru",
