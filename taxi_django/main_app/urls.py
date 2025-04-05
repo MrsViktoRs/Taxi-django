@@ -25,8 +25,10 @@ urlpatterns = [
     path('delete_user/<int:user_id>/', UserDeleteView.as_view()),
     path("users/<int:chat_id>/", UserDetailView.as_view(), name="user-detail"),
     path('driver-licenses/', DriverLicenseCreateAPIView.as_view(), name='create-driver-license'),
-    path('driver-licenses/<int:number>', DriverLicenseDetailView.as_view(), name='driver-license-detail'),
+    path('driver-licenses/<str:number>/', DriverLicenseDetailView.as_view(), name='driver-license-detail'),
     path('cars/', CarCreateAPIView.as_view(), name='car-create'),
     path('cars/<int:vin_number>/', CarDetailView.as_view(), name='car-detail'),
     path('cars/by-id/<int:chat_id>/', CarDetailByIdView.as_view(), name='car-detail-by-id'),
+    path("proxy-yandex/", proxy_yandex_api, name="proxy_yandex"),
+    path("proxy-yandex/create_car/", proxy_yandex_api, name="proxy_yandex"),
 ]

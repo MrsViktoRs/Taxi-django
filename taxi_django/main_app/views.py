@@ -112,6 +112,102 @@ def get_messages(request):
         serializer = AppealsSerializer(messages, many=True)
         return JsonResponse(serializer.data, safe=False)
 
+
+@csrf_exempt
+def proxy_yandex_api(request):
+    if request.method != "POST":
+        return JsonResponse({"error": "Only POST requests are allowed"}, status=405)
+
+    try:
+        data = json.loads(request.body)
+
+        headers = {
+            "X-API-Key": data.get("apiKey"),
+            "X-Client-ID": data.get("clientId"),
+            "X-Park-ID": data.get("park_id"),
+            "X-Idempotency-Token": data.get("idempotency_token"),
+            "Content-Type": "application/json",
+            "Cache-Control": "no-cache",
+            # "Accept - Language": "ru",
+        }
+
+        profession = data.get("profession")
+        if isinstance(profession, dict):
+            profession = profession.get("Profession", "taxi/driver")
+
+        payload = {
+            "contractor": data.get("contractor"),
+            "employment": data.get("employment"),
+            "profession": str(profession),
+        }
+
+        yandex_url = "https://fleet-api.taxi.yandex.net/v1/parks/contractors/profile"
+        response = requests.post(yandex_url, json=payload, headers=headers)
+        print(payload)
+        print(response.json())
+
+        return JsonResponse(response.json(), status=response.status_code)
+
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
+
+
+@csrf_exempt
+def create_car(request):
+    if request.method != "POST":
+        return JsonResponse({"error": "Only POST requests are allowed"}, status=405)
+
+    try:
+        data = json.loads(request.body)
+
+        headers = {
+            "X-API-Key": data.get("apiKey"),
+            "X-Client-ID": data.get("clientId"),
+            "X-Park-ID": data.get("park_id"),
+            "X-Idempotency-Token": data.get("idempotency_token"),
+            "Content-Type": "application/json",
+            "Cache-Control": "no-cache",
+        }
+
+        park_profile = {
+            "callsign": "Позывной",
+            "fuel_type": data["car"].get("flue_type"),
+            "status": "unknown",
+        }
+
+        vehicle_licenses = {
+            "licence_plate_number": data["car"].get("gos_number"),
+            "registration_certificate": data["car"].get("license"),
+        }
+
+        vehicle_specifications = {
+            "brand": data["car"].get("brand"),
+            "color": data["car"].get("color"),
+            "model": data["car"].get("model"),
+            "transmission": data["car"].get("transmission"),
+            "year": data["car"].get("year"),
+            "vin": data["car"].get("vin_number"),
+        }
+
+        payload = {
+            "park_profile": park_profile,
+            "vehicle_licenses": vehicle_licenses,
+            "vehicle_specifications": vehicle_specifications,
+        }
+
+        yandex_url = "https://fleet-api.taxi.yandex.net/v1/parks/contractors/profile"
+        response = requests.post(yandex_url, json=payload, headers=headers)
+
+        if response.status_code == 200:
+            response_data = response.json()
+            return JsonResponse({"vehicle_id": response_data.get("vehicle_id")}, status=200)
+        else:
+            return JsonResponse(response.json(), status=response.status_code)
+
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
+
+
 class AppealsHistoryGet(generics.ListCreateAPIView):
     serializer_class = AppealsSerializer
 
@@ -194,10 +290,6 @@ class DeleteMessageView(View):
             user = Users.objects.filter(chat_id=chat_id).first()
             if not user:
                 return JsonResponse({'error': 'User not found'}, status=404)
-            role = Role.objects.filter(user_id=user.id).first()
-            if not role:
-                logger.warning(f'request: /accept_message/ \nstatus: role is {role}')
-                return JsonResponse({"error": "Role not found"}, status=403, safe=False)
             message = Messages.objects.filter(user_id=user.id).all()
             user.auth_status = True
             user.save()
@@ -217,71 +309,36 @@ class DeleteMessageView(View):
             else:
                 logger.warning('Сообщений для удаления нет')
             url_accep_mess = f'https://api.telegram.org/bot{os.getenv("BOT_TOKEN")}/sendMessage'
-            if role.name == 'driver':
-                user.name = data['name']
-                user.surname = data['surname']
-                user.patronymic = data['patronymic']
-                fixed_tariff = Tariffs.objects.get(name="Фиксированный(СМЗ)")
-                user.tariff = fixed_tariff
-                user.save()
-                text = ("А ты смотрел видео «Экспансии» в соц.сетях❓❗️\n"
-                        "Наш канал в [Telegram](t.me/ExpansiyaTaxi)💬 где мы регулярно публикуем новости из мира автомобилей.\n\n"
-                        "Наши каналы на \n"
-                        "📹 [YouTube](youtube.com/@ExpanciaTaxi)\n"
-                        "🌐 [VkVideo](vk.com/expansiyataxi)\n"
-                        "📷 [Instagram](instagram.com/expansion_taxi)\n"
-                        "🕺 [Tik-Tok](tiktok.com/@expansion_taxi)\n"
-                        "где мы публикуем развлекательный и информативный контент.\n"
-                        "Будь в теме с «Экспансией» !")
-                payload_accep_mess = {
-                    "chat_id": chat_id,
-                    "text": text,
-                    'parse_mode': 'Markdown',
-                    "reply_markup": {
-                        "inline_keyboard":
-                            [
-                                [{"text": "Смена", "callback_data": "shift"}],
-                                [{"text": "Бонусы и акции", "callback_data": "bonus"}],
-                                [{"text": "Твоя статистика", "callback_data": "my_stats"}, {"text": "Управление профилем", "callback_data": "profile"}],
-                                [{"text": "Информация о парке", "callback_data": "info_park"}, {"text": "Связь с нами", "callback_data": "call_for"}],
-                            ]
-                    }
+            # user.name = data['name']
+            # user.surname = data['surname']
+            # user.patronymic = data['patronymic']
+            # fixed_tariff = Tariffs.objects.get(name="Фиксированный(СМЗ)")
+            # user.tariff = fixed_tariff
+            # user.save()
+            text = ("А ты смотрел видео «Экспансии» в соц.сетях❓❗️\n"
+                    "Наш канал в [Telegram](t.me/ExpansiyaTaxi)💬 где мы регулярно публикуем новости из мира автомобилей.\n\n"
+                    "Наши каналы на \n"
+                    "📹 [YouTube](youtube.com/@ExpanciaTaxi)\n"
+                    "🌐 [VkVideo](vk.com/expansiyataxi)\n"
+                    "📷 [Instagram](instagram.com/expansion_taxi)\n"
+                    "🕺 [Tik-Tok](tiktok.com/@expansion_taxi)\n"
+                    "где мы публикуем развлекательный и информативный контент.\n"
+                    "Будь в теме с «Экспансией» !")
+            payload_accep_mess = {
+                "chat_id": chat_id,
+                "text": text,
+                'parse_mode': 'Markdown',
+                "reply_markup": {
+                    "inline_keyboard":
+                        [
+                            [{"text": "Смена", "callback_data": "shift"}],
+                            [{"text": "Бонусы и акции", "callback_data": "bonus"}],
+                            [{"text": "Твоя статистика", "callback_data": "my_stats"}, {"text": "Управление профилем", "callback_data": "profile"}],
+                            [{"text": "Информация о парке", "callback_data": "info_park"}, {"text": "Связь с нами", "callback_data": "call_for"}],
+                        ]
                 }
-                response_accep_mess = requests.post(url_accep_mess, json=payload_accep_mess)
-            elif role.name == 'partner':
-                user.name = data['name']
-                user.surname = data['surname']
-                user.patronymic = data['patronymic']
-                user.phone = data['phone']
-                user.card_number = data['card_number']
-                user.save()
-                text = (
-                    "Добро пожаловать в таксопарк Экспансия✋.\n"
-                    "С нами не обязательно быть водителем🚘 чтобы зарабатывать!\n"
-                    "Мы делимся своим доходом💰 с вами, за каждого друга, который работает в нашем парке и выполняет заказы, вы будете получать 50% от комиссии парка.\n"
-                    "Подробные условия:\n"
-                    "Получай по 2₽💰 с каждого заказа своего друга или👬 1₽ если он самозанятый.\n"
-                    "Начисления будут действовать в течении 3х месяцев с момента первого заказа.\n"
-                    "Начисления приходят один раз в месяц в период с 1-5 число следующего месяца(за исключением выходных).\n"
-                    "Узнать подробную статистику по своему профилю ты можешь по кнопке “Статистика”👇)\n"
-                )
-                payload_accep_mess = {
-                    "chat_id": chat_id,
-                    "text": text,
-                    'parse_mode': 'Markdown',
-                    "reply_markup": {
-                        "inline_keyboard":
-                            [
-                                [{"text": "Профиль партнера", "callback_data": "profile_parther"}],
-                                [{"text": "Статистика по акциям", "callback_data": "stats_action"}],
-                                [{"text": "Информация о парке", "callback_data": "info_park"}, {"text": "Связь с нами", "callback_data": "call_for"}],
-                            ]
-                    }
-                }
-                response_accep_mess = requests.post(url_accep_mess, json=payload_accep_mess)
-            else:
-                logger.warning(f'Нет такой роли\nUser: \nid: {user.id} \nchat_id:{user.chat_id} \nphone: {user.phone}')
-                return JsonResponse({'status': 'role is not found'}, status=403)
+            }
+            response_accep_mess = requests.post(url_accep_mess, json=payload_accep_mess)
             if response_accep_mess.status_code == 200:
                 res_accep_mess_json = response_accep_mess.json()
                 Messages.objects.create(

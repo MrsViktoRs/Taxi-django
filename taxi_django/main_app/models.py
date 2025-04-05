@@ -15,7 +15,7 @@ class DriverLicenses(models.Model):
                                    blank=True) #храним в str т.к. передаём в флит именно в таком формате
     issue_date = models.CharField(max_length=10, null=True,
                                    blank=True)  # храним в str т.к. передаём в флит именно в таком формате
-    number = models.BigIntegerField(blank=True, null=True) # номер в\у
+    number = models.CharField(blank=True, null=True) # номер в\у
 
     class Meta:
         verbose_name = 'driver_license'
