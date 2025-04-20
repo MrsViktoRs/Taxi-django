@@ -30,8 +30,8 @@ def send_messages():
                     users = Users.objects.filter(auth_status=True)
                 for user in users:
                     payload = {
-                        'chat_id': user.chat_id,
-                        'text': message.message,
+                        "chat_id": user.chat_id,
+                        "text": message.message,
                         "reply_markup": {
                             "inline_keyboard":
                                 [
@@ -59,8 +59,8 @@ def send_messages():
 def _send_message_and_del(message, users, base_url):
     for user in users:
         payload = {
-            'chat_id': user.chat_id,
-            'text': message.message,
+            "chat_id": user.chat_id,
+            "text": message.message,
             "reply_markup": {
                 "inline_keyboard":
                     [
