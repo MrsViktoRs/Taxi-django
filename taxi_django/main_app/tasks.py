@@ -39,7 +39,7 @@ def send_messages():
                                 ]
                         }
                     }
-                    response = requests.post(base_url, data=payload)
+                    response = requests.post(base_url, json=payload)
 
                     if response.status_code == 200:
                         logger.warning(f'Сообщение отправлено {user.name} {user.chat_id}')
@@ -68,7 +68,7 @@ def _send_message_and_del(message, users, base_url):
                     ]
             }
         }
-        response = requests.post(base_url, data=payload)
+        response = requests.post(base_url, json=payload)
 
         if response.status_code == 200:
             user = Users.objects.filter(chat_id=user.chat_id).first()
