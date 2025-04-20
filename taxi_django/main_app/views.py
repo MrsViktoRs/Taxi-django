@@ -257,29 +257,63 @@ def get_user_status(request):
 class SendMessageView(View):
     def post(self, request, *args, **kwargs):
         try:
-            data = json.loads(request.body)
-            chat_id = data.get('chat_id')
-            message = 'Ваша заявка на регистрацию отправлена.'
-            url = f'https://api.telegram.org/bot{os.getenv("BOT_TOKEN")}/sendMessage'
-            payload = {
-                'chat_id': chat_id,
-                'text': message
-            }
-            response = requests.post(url, json=payload)
+            try:
+                data = json.loads(request.body)
+            except json.JSONDecodeError:
+                return JsonResponse({"error": "Invalid JSON"}, status=400)
 
-            if response.status_code == 200:
-                user = Users.objects.filter(chat_id=chat_id).first()
-                json_answer = response.json()
-                message_id = json_answer['result']['message_id']
-                Messages.objects.create(
-                    user_id=user.id,
-                    message_id=message_id,
-                )
-                return JsonResponse({'status': 'Message send successfully!'})
-            else:
-                return JsonResponse({'error': 'Failed to send message.'}, status=response.status_code)
+            if not isinstance(data, dict) or 'chat_id' not in data:
+                return JsonResponse({"error": "chat_id is required"}, status=400)
+
+            chat_id = data['chat_id']
+            message = '✅ Ваша заявка на регистрацию отправлена, как только мы проверим ваши данные, вам прийдет сообщение'
+            url_send = f'https://api.telegram.org/bot{os.getenv("BOT_TOKEN")}/sendMessage'
+            payload_send = {
+                'chat_id': chat_id,
+                'text': message,
+            }
+
+            user = Users.objects.filter(chat_id=chat_id).first()
+            if not user:
+                return JsonResponse({"error": "User not found"}, status=404)
+
+            message = Messages.objects.filter(user_id=user.id).all()
+            try:
+                if len(message) != 0:
+                    url = f'https://api.telegram.org/bot{os.getenv("BOT_TOKEN")}/deleteMessage'
+                    print(message)
+                    for mess in message:
+                        print(mess)
+                        payload = {
+                            'chat_id': chat_id,
+                            'message_id': mess.message_id
+                        }
+                        response_del_mess = requests.post(url, data=payload)
+                        if response_del_mess.status_code != 200:
+                            logger.warning(f'Сообщение не удалено, статус Telegram: {response_del_mess.status_code}')
+                            mess.delete()
+                        else:
+                            mess.delete()
+            except Exception as err:
+                print(err)
+            response = requests.post(url_send, json=payload_send)
+            json_answer = response.json()
+
+            if not json_answer.get('ok'):
+                error_msg = json_answer.get('description', 'Unknown Telegram API error')
+                return JsonResponse({"error": error_msg}, status=400)
+
+            message_id = json_answer['result']['message_id']
+            Messages.objects.create(
+                user_id=user.id,
+                message_id=message_id,
+            )
+
+            return JsonResponse({'status': 'Message sent successfully!'})
+
         except Exception as err:
             print(err)
+            return JsonResponse({"error": "Internal server error"}, status=500)
 
 
 class DeleteMessageView(View):
@@ -290,9 +324,9 @@ class DeleteMessageView(View):
             user = Users.objects.filter(chat_id=chat_id).first()
             if not user:
                 return JsonResponse({'error': 'User not found'}, status=404)
-            message = Messages.objects.filter(user_id=user.id).all()
             user.auth_status = True
             user.save()
+            message = Messages.objects.filter(user_id=user.id).all()
             if len(message) != 0:
                 url = f'https://api.telegram.org/bot{os.getenv("BOT_TOKEN")}/deleteMessage'
                 for mess in message:
