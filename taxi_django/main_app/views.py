@@ -281,9 +281,7 @@ class SendMessageView(View):
             try:
                 if len(message) != 0:
                     url = f'https://api.telegram.org/bot{os.getenv("BOT_TOKEN")}/deleteMessage'
-                    print(message)
                     for mess in message:
-                        print(mess)
                         payload = {
                             'chat_id': chat_id,
                             'message_id': mess.message_id
