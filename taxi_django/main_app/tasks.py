@@ -39,7 +39,10 @@ def send_messages():
                                 ]
                         }
                     }
+                    print("Отправка сообщения:", payload)
+                    logger.warning(f'Payload: {payload}')
                     response = requests.post(base_url, json=payload)
+                    logger.warning(f'Telegram ответ: {response.json()}')
 
                     if response.status_code == 200:
                         logger.warning(f'Сообщение отправлено {user.name} {user.chat_id}')
